@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
+
 namespace ThirdTeam_Study
 {
-    public class Tutor
+    internal class Tutor
     {
         public required string FirstName { get; set; }
 
@@ -11,7 +15,7 @@ namespace ThirdTeam_Study
 
         public const string DescriptionLink = "https//hillel.com/tutordesc/11dw2e2e34rw";
 
-        public readonly int ID { get; set; }
+        public readonly int ID;
 
         [SetsRequiredMembers]
         public Tutor(string firstname, string lastname)
@@ -20,7 +24,7 @@ namespace ThirdTeam_Study
             LastName = lastname;
         }
 
-        [SetsRequiredMembers]
+        
         public Tutor()
         {
             FirstName = "Unknown";
