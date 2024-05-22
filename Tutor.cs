@@ -11,25 +11,24 @@ namespace ThirdTeam_Study
 
         public required string LastName { get; set; }
 
-        public int Age { get; set; }
+        public DateOnly? BDay { get; set; }
 
         public const string DescriptionLink = "https//hillel.com/tutordesc/11dw2e2e34rw";
 
-        public readonly int ID;
+        public int ID { get; }
+
+        private readonly int? Age;
 
         [SetsRequiredMembers]
-        public Tutor(string firstname, string lastname)
+        public Tutor(string firstname, string lastname, DateOnly bday)
         {
             FirstName = firstname;
             LastName = lastname;
+            BDay = bday;
+            ID = (this.FirstName + this.LastName + this.BDay.ToString()).GetHashCode(); //самая примитивная реализация для примера, в идеале это
+            Age = DateTime.Now.Year-bday.Year;
         }
-
-        
-        public Tutor()
-        {
-            FirstName = "Unknown";
-            LastName = "Tutor";
-        }
+    
     }
 }
 
