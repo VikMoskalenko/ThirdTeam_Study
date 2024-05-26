@@ -1,4 +1,6 @@
-﻿namespace ThirdTeam_Study
+﻿using System.Text.RegularExpressions;
+
+namespace ThirdTeam_Study
 {
     internal class Program
     {
@@ -6,44 +8,67 @@
         {
             HomeWork hw1 = new(new Tutor("Jhon", "Dou", new DateOnly(1991, 1, 24))) 
             { 
-                Id= Guid.NewGuid().ToString() 
+                Id= Guid.NewGuid().ToString(),
             };
 
             while (true)
             {
-                Console.WriteLine("1. Choose file");
-                Console.WriteLine("2. Exit");
-                Console.Write("Choose option: ");
-                string option = Console.ReadLine() ?? string.Empty; ;
+                Console.WriteLine("Enter path to your home work file:");
+                string sourceFilePath = Console.ReadLine() ?? string.Empty;
 
-                if (option == "2")
+                if (String.IsNullOrEmpty(sourceFilePath)) {
+                    Console.WriteLine("You need to paste path to home work file");
+                }
+
+                try
                 {
+                    hw1.UploadHomeWork(sourceFilePath ?? string.Empty);
+                    Console.WriteLine("File saved successfully.");
                     break;
                 }
-                else if (option == "1")
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Choose path to your home work file:");
-                    string sourceFilePath = Console.ReadLine() ?? string.Empty;
-
-                    try
-                    {
-                        hw1.UploadHomeWork(sourceFilePath ?? string.Empty);
-                        Console.WriteLine("File saved successfully.");
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error occur: {ex.Message}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Wrong option. Please try again.");
+                    Console.WriteLine($"Error occur: {ex.Message}");
                 }
             }
 
-            hw1.GradeHomeWork(100);
-            hw1.Comment = "Looks good to me";
+            Console.WriteLine();
+
+            while (true)
+            {
+                Console.WriteLine("enter homework grade");
+                string value = Console.ReadLine() ?? string.Empty;
+                
+                if (!ushort.TryParse(value, out ushort result)) {
+                    Console.WriteLine("Wrong format. Please enter number between 1 and 100");
+                    continue;
+                } else if (result < 0 || result > 100)
+                {
+                    Console.WriteLine("Grade should be between 1 and 100");
+                    continue;
+                } else
+                {
+                    hw1.Grade = result;
+                }
+                break;
+            }
+
+            Console.WriteLine();
+
+            while (true)
+            {
+                Console.WriteLine("Add some comment or leave it empty:");
+                string comment = Console.ReadLine() ?? string.Empty;
+
+                if (!Regex.IsMatch(comment, @"[A-Za-z]?"))
+                {
+                    Console.WriteLine("Only letters allowed");
+                }
+                else {
+                    hw1.Comment = comment;
+                    break;
+                }
+            }
 
             Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
             Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));

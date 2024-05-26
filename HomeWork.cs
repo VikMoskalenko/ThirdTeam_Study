@@ -41,25 +41,6 @@
             File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
         }
 
-        public void GradeHomeWork(ushort grade) {
-            while (true)
-            {
-                if (HomeWorkFile.Length == 0)
-                {
-                    Console.WriteLine("Please upload home work first");
-                    break;
-                }
-                if ( grade < 1 || grade > 100) {
-                    Console.WriteLine("incorrect rating range Enter from 1 to 100");
-                } else
-                {
-                    Grade = grade;
-                    Console.WriteLine($"Homework is worth {grade} points ");
-                    break;
-                }
-            }
-        }
-
         public string GetTutorFullName() => $"{Tutor.FirstName} {Tutor.LastName}";
     }
 }
