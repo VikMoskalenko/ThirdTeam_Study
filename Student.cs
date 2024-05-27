@@ -18,10 +18,15 @@ public class Student
 	}
 	public string GetStudentInfo()
 	{
-		return $"Id : {Id}, name : {Name}, lastName {LastName} ";
+		return "Hello, student  ";
 	}
 
-	public string StudentSayHello()
+    public string GetStudentInfo(string Name)
+    {
+        return $"Id : {Id}, name : {Name}, lastName {LastName} ";
+    }
+
+    public string StudentSayHello()
 	{
 		return $"Hello, I am {Name}";
 	}
