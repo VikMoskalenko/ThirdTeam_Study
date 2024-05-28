@@ -71,6 +71,11 @@ namespace ThirdTeam_Study
             }
         }
 
+        public List<Student> GetAll()
+        {
+            return Students;
+        }
+
     }
 
 
@@ -119,6 +124,10 @@ namespace ThirdTeam_Study
             {
                 Console.WriteLine("Tutor not found");
             }
+        }
+        public List<Tutor> GetAll()
+        {
+            return Tutors;
         }
     }
 
