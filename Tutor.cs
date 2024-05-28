@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ThirdTeam_Study
 {
-    internal class Tutor
+    public class Tutor
     {
         public required string FirstName { get; set; }
 
