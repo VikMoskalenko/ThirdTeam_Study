@@ -33,15 +33,13 @@ namespace ThirdTeam_Study
 
         public string ToTeachLesson(LessonDuration duration)
         {
-            Tutor tutor = this;
-            tutor = tutor + duration;
+            Seniority += (int)duration;
             return Finish_str;
         }
 
-        public string ToTeachLesson()
+        public string ToTeachLesson() //урок по умолчанию 1 час
         {
-            Tutor tutor = this;
-            tutor = tutor + LessonDuration.OneHour;
+            Seniority += (int)LessonDuration.OneHour;
             return Finish_str;
         }
 
@@ -50,11 +48,6 @@ namespace ThirdTeam_Study
             return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age + ", Seniority: " + Seniority;
         }
 
-        public static Tutor operator +(Tutor tutor, LessonDuration duration)
-        {
-            tutor.Seniority =+ (int)duration;
-            return tutor;
-        }
 
     }
 
