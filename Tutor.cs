@@ -13,37 +13,36 @@ namespace ThirdTeam_Study
 
         public DateOnly BDay { get; }
 
-        public const string DescriptionLink = "https//hillel.com/tutordesc/11dw2e2e34rw";
+        public const string Description_link = "https//hillel.com/tutordesc/11dw2e2e34rw";
 
         public readonly int Age;
 
         public int Seniority { get; private set; } = 0;
 
-        public LessonDuration Lesson_duration { get; private set; }
+        private const string Finish_str = "The lesson was finished!";
 
         [SetsRequiredMembers]
-        public Tutor(string firstname, string lastname, DateOnly bday, LessonDuration duration)
+        public Tutor(string firstname, string lastname, DateOnly bday)
         {
             FirstName = firstname;
             LastName = lastname;
             BDay = bday;
             ID = Guid.NewGuid().ToString();
             Age = bday.AgeCalculate();
-            Lesson_duration = duration;
         }
 
-        public string ToTeach()
+        public string ToTeachLesson(LessonDuration duration)
         {
-            Tutor t = this;
-            t++;
-            return "I will teach you today!";
+            Tutor tutor = this;
+            tutor = tutor + duration;
+            return Finish_str;
         }
 
-        public string ToTeach(int lesson_id)
+        public string ToTeachLesson()
         {
-            Tutor t = this;
-            t++;
-            return "I will teach you today on the lesson: " + lesson_id.ToString() + "!";
+            Tutor tutor = this;
+            tutor = tutor + LessonDuration.OneHour;
+            return Finish_str;
         }
 
         public override string ToString()
@@ -51,9 +50,9 @@ namespace ThirdTeam_Study
             return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age;
         }
 
-        public static Tutor operator ++(Tutor tutor)
+        public static Tutor operator +(Tutor tutor, LessonDuration duration)
         {
-            tutor.Seniority =+ (int)tutor.Lesson_duration;
+            tutor.Seniority =+ (int)duration;
             return tutor;
         }
 
