@@ -5,6 +5,8 @@ namespace ThirdTeam_Study
 {
     public class Tutor
     {
+        public string ID { get; }
+
         public required string FirstName { get; set; }
 
         public required string LastName { get; set; }
@@ -13,9 +15,9 @@ namespace ThirdTeam_Study
 
         public const string DescriptionLink = "https//hillel.com/tutordesc/11dw2e2e34rw";
 
-        public int ID { get; }
-
         public readonly int Age;
+
+        public int Seniority { get; }
 
         [SetsRequiredMembers]
         public Tutor(string firstname, string lastname, DateOnly bday)
@@ -23,8 +25,8 @@ namespace ThirdTeam_Study
             FirstName = firstname;
             LastName = lastname;
             BDay = bday;
-            ID = //Math.Abs((this.FirstName + this.LastName + this.BDay.ToString()).GetHashCode()); //самая примитивная реализация для примера, в идеале это
-            Age = DateTime.Now.Year - bday.Year;
+            ID = Guid.NewGuid().ToString();
+            Age = bday.AgeCalculate();
         }
 
         public string ToTeach()
@@ -40,8 +42,7 @@ namespace ThirdTeam_Study
         public override string ToString()
         {
             return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age;
-        }
-
+        } 
 
     }
 
