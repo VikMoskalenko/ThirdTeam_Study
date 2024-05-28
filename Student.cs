@@ -30,4 +30,13 @@ public class Student
 	{
 		return $"Hello, I am {Name}";
 	}
+
 }
+public static class StudentExtensions
+{
+	public static string GetFullInfo(this Student student)
+	{
+		return $"{student.Name}, {student.DOB}, {student.LastName}";
+	}
+}
+public record StudentRecord(string Id, string Name, string LastName, string StudyYear);
