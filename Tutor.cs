@@ -17,25 +17,32 @@ namespace ThirdTeam_Study
 
         public readonly int Age;
 
-        public int Seniority { get; private set; }
+        public int Seniority { get; private set; } = 0;
+
+        public LessonDuration Lesson_duration { get; private set; }
 
         [SetsRequiredMembers]
-        public Tutor(string firstname, string lastname, DateOnly bday)
+        public Tutor(string firstname, string lastname, DateOnly bday, LessonDuration duration)
         {
             FirstName = firstname;
             LastName = lastname;
             BDay = bday;
             ID = Guid.NewGuid().ToString();
             Age = bday.AgeCalculate();
+            Lesson_duration = duration;
         }
 
         public string ToTeach()
         {
+            Tutor t = this;
+            t++;
             return "I will teach you today!";
         }
 
         public string ToTeach(int lesson_id)
         {
+            Tutor t = this;
+            t++;
             return "I will teach you today on the lesson: " + lesson_id.ToString() + "!";
         }
 
@@ -44,9 +51,10 @@ namespace ThirdTeam_Study
             return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age;
         }
 
-        public static int operator +(Tutor t, LessonDuration duration)
+        public static Tutor operator ++(Tutor tutor)
         {
-            return t.Seniority + (int)duration;
+            tutor.Seniority =+ (int)tutor.Lesson_duration;
+            return tutor;
         }
 
     }
