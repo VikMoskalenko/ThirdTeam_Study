@@ -17,7 +17,7 @@ namespace ThirdTeam_Study
 
         public readonly int Age;
 
-        public int Seniority { get; }
+        public int Seniority { get; private set; }
 
         [SetsRequiredMembers]
         public Tutor(string firstname, string lastname, DateOnly bday)
@@ -42,7 +42,12 @@ namespace ThirdTeam_Study
         public override string ToString()
         {
             return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age;
-        } 
+        }
+
+        public static int operator +(Tutor t, LessonDuration duration)
+        {
+            return t.Seniority + (int)duration;
+        }
 
     }
 
