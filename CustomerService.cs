@@ -9,7 +9,7 @@ namespace ThirdTeam_Study
         public const string ServiceName = "Hillel Education Platform Support Service";
         public readonly string ServiceEmail;
         public required TutorList Tutors { get; set; }
-        //public required StudentList Students { get; set; }
+        public required StudentList Students { get; set; }
         public string? ServicePhone { get; set; } 
         
         public CustomerService(string serviceEmail)
@@ -26,23 +26,65 @@ namespace ThirdTeam_Study
     }
 
 
-    // TODO: Add student list class
-    //public class StudentList
-    //{
-    //    private List<Student> students = new List<Student>();
 
-    //}
+    public class StudentList
+    {
+        private List<Student> Students = new List<Student>();
+
+        public void AddStudent(Student student)
+        {
+            Students.Add(student);
+            Console.WriteLine($"Student {student.LastName} added.");
+        }
+
+        public void AddStudent(string id, string studyyear, string name, string lastname)
+        {
+            var NewStudent = new Student(id, studyyear, name, lastname)
+            { LastName = lastname, Name = name };
+            Students.Add(NewStudent);
+            Console.WriteLine($"Student {NewStudent.LastName} added.");
+        }
+        public void RemoveStudent(string name, string lastname)
+        {
+            var student = Students.Find(t => t.Name == name && t.LastName == lastname);
+            if (student != null)
+            {
+                Console.WriteLine($"Student {student.Id} : {student.Name} {student.LastName} removed");
+                Students.Remove(student);
+            }
+            else
+            {
+                Console.WriteLine("Student not found");
+            }
+        }
+        public void RemoveStudent(string id)
+        {
+            var student = Students.Find(t => t.Id == id);
+            if (student != null)
+            {
+                Console.WriteLine($"Student {student.Id} : {student.Name} {student.LastName} removed");
+                Students.Remove(student);
+            }
+            else
+            {
+                Console.WriteLine("Student not found");
+            }
+        }
+
+    }
+
+
+
 
     public class TutorList
     {
         private List<Tutor> Tutors = new List<Tutor>();
 
-        //Not work, Tutor class has internal access modifier
-        //public void AddTutor(Tutor tutor)
-        //{
-        //    Tutors.Add(tutor);
-        //    Console.WriteLine($"Tutor {tutor.FirstName} added.");
-        //}
+        public void AddTutor(Tutor tutor)
+        {
+            Tutors.Add(tutor);
+            Console.WriteLine($"Tutor {tutor.FirstName} added.");
+        }
 
         public void AddTutor(string firstname, string lastname, DateOnly bday)
         {
