@@ -23,7 +23,7 @@ namespace ThirdTeam_Study
             FirstName = firstname;
             LastName = lastname;
             BDay = bday;
-            ID = Math.Abs((this.FirstName + this.LastName + this.BDay.ToString()).GetHashCode()); //самая примитивная реализация для примера, в идеале это
+            ID = //Math.Abs((this.FirstName + this.LastName + this.BDay.ToString()).GetHashCode()); //самая примитивная реализация для примера, в идеале это
             Age = DateTime.Now.Year - bday.Year;
         }
 
