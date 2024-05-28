@@ -4,7 +4,7 @@ namespace ThirdTeam_Study
 {
     public class HomeWork
     {
-        public Student Student;
+        private readonly Student Student;
 
         const string noFile = "File not found";
         public ushort HomeWorkNumber { get; set; } = 1;
