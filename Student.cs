@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 public class Student
 {
@@ -8,7 +9,9 @@ public class Student
 	public const string University = "Hogwarts";
 	public DateOnly? DOB { get; set; }
 	public readonly string StudyYear;
-	public Student (string id, string studyyear, string name, string lastname)
+
+    [SetsRequiredMembers]
+    public Student (string id, string studyyear, string name, string lastname)
 	{
 		Id = id;
 		StudyYear = studyyear;

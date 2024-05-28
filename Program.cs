@@ -6,73 +6,28 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            HomeWork hw1 = new(new Tutor("Jhon", "Dou", new DateOnly(1991, 1, 24))) 
-            { 
-                Id= Guid.NewGuid().ToString(),
+            Student student1 = new("1", "2024", "Myke", "Tyson");
+
+            HomeWork hw1 = new(student1)
+            {
+                Id = Guid.NewGuid()
             };
 
-            while (true)
-            {
-                Console.WriteLine("Enter path to your home work file:");
-                string sourceFilePath = Console.ReadLine() ?? string.Empty;
-
-                if (String.IsNullOrEmpty(sourceFilePath)) {
-                    Console.WriteLine("You need to paste path to home work file");
-                }
-
-                try
-                {
-                    hw1.UploadHomeWork(sourceFilePath ?? string.Empty);
-                    Console.WriteLine("File saved successfully.");
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error occur: {ex.Message}");
-                }
-            }
+            hw1.SubmitHW();
 
             Console.WriteLine();
 
-            while (true)
-            {
-                Console.WriteLine("enter homework grade");
-                string value = Console.ReadLine() ?? string.Empty;
-                
-                if (!ushort.TryParse(value, out ushort result)) {
-                    Console.WriteLine("Wrong format. Please enter number between 1 and 100");
-                    continue;
-                } else if (result < 0 || result > 100)
-                {
-                    Console.WriteLine("Grade should be between 1 and 100");
-                    continue;
-                } else
-                {
-                    hw1.Grade = result;
-                }
-                break;
-            }
+            hw1.AssertHW();
 
             Console.WriteLine();
 
-            while (true)
-            {
-                Console.WriteLine("Add some comment or leave it empty:");
-                string comment = Console.ReadLine() ?? string.Empty;
+            hw1.AddHWComment();
 
-                if (!Regex.IsMatch(comment, @"[A-Za-z]?"))
-                {
-                    Console.WriteLine("Only letters allowed");
-                }
-                else {
-                    hw1.Comment = comment;
-                    break;
-                }
-            }
-
-            Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
-            Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
-            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetTutorFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
+            Console.WriteLine(hw1.GetHWTitle());
+            Console.WriteLine();
+            Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,10} | {3,25} |", "Student", "Home work number", "Grade", "Comment"));
+            Console.WriteLine("| {0,-15} | {1,-20} | {2, -10} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 10), new string('-', 25));
+            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,10} | {3,25} |", $"{hw1.GetStudentFullName()}", hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
         }
     }
 }
