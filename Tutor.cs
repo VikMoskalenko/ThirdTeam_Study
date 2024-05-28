@@ -7,11 +7,7 @@ namespace ThirdTeam_Study
     {
         public string ID { get; }
 
-        public required string FirstName { get; set; }
-
-        public required string LastName { get; set; }
-
-        public DateOnly BDay { get; }
+        public readonly PersonalInfo Info;
 
         public const string Description_link = "https//hillel.com/tutordesc/11dw2e2e34rw";
 
@@ -24,11 +20,9 @@ namespace ThirdTeam_Study
         [SetsRequiredMembers]
         public Tutor(string firstname, string lastname, DateOnly bday)
         {
-            FirstName = firstname;
-            LastName = lastname;
-            BDay = bday;
+            Info = new PersonalInfo { FirstName = firstname, LastName = lastname, BDay = bday };
             ID = Guid.NewGuid().ToString();
-            Age = bday.AgeCalculate();
+            Age = Info.BDay.AgeCalculate();
         }
 
         public string ToTeachLesson(LessonDuration duration)
@@ -45,7 +39,7 @@ namespace ThirdTeam_Study
 
         public override string ToString()
         {
-            return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age + ", Seniority: " + Seniority;
+            return "FirstName: " + Info.FirstName + ", LastName: " + Info.LastName + ", ID: " + ID + ", Age: " + Age + ", Seniority: " + Seniority;
         }
 
 
