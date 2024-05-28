@@ -47,7 +47,7 @@ namespace ThirdTeam_Study
 
         public override string ToString()
         {
-            return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age;
+            return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age + ", Seniority: " + Seniority;
         }
 
         public static Tutor operator +(Tutor tutor, LessonDuration duration)
