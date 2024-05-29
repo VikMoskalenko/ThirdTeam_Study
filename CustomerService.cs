@@ -88,22 +88,22 @@ namespace ThirdTeam_Study
         public void AddTutor(Tutor tutor)
         {
             Tutors.Add(tutor);
-            Console.WriteLine($"Tutor {tutor.FirstName} added.");
+            Console.WriteLine($"Tutor {tutor.Info.FirstName} added.");
         }
 
         public void AddTutor(string firstname, string lastname, DateOnly bday)
         {
             var NewTutor = new Tutor(firstname, lastname, bday);
             Tutors.Add(NewTutor);
-            Console.WriteLine($"Tutor {NewTutor.FirstName} added.");
+            Console.WriteLine($"Tutor {NewTutor.Info.FirstName} added.");
         }
 
         public void RemoveTutor(string firstname, string lastname) 
         {
-            var tutor = Tutors.Find(t => t.FirstName == firstname && t.LastName == lastname);
+            var tutor = Tutors.Find(t => t.Info.FirstName == firstname && t.Info.LastName == lastname);
             if (tutor != null) 
             {
-                Console.WriteLine($"Tutor {tutor.ID} : {tutor.FirstName} {tutor.LastName} removed");
+                Console.WriteLine($"Tutor {tutor.ID} : {tutor.Info.FirstName} {tutor.Info.LastName} removed");
                 Tutors.Remove(tutor);
             }
             else
@@ -112,12 +112,12 @@ namespace ThirdTeam_Study
             }
         }
 
-        public void RemoveTutor(int id)
+        public void RemoveTutor(string id)
         {
             var tutor = Tutors.Find(t => t.ID == id);
             if (tutor != null)
             {
-                Console.WriteLine($"Tutor {tutor.ID} : {tutor.FirstName} {tutor.LastName} removed");
+                Console.WriteLine($"Tutor {tutor.ID} : {tutor.Info.FirstName} {tutor.Info.LastName} removed");
                 Tutors.Remove(tutor);
             }
             else
