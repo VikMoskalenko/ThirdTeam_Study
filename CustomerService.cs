@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -10,12 +11,12 @@ namespace ThirdTeam_Study
         public readonly string ServiceEmail;
         public required TutorList Tutors { get; set; }
         public required StudentList Students { get; set; }
-        public string? ServicePhone { get; set; } 
-        
+        public string? ServicePhone { get; set; }
+
         public CustomerService(string serviceEmail)
-            {
-                ServiceEmail = serviceEmail;
-            }
+        {
+            ServiceEmail = serviceEmail;
+        }
 
         public void GetSupportInfo()
         {
@@ -27,8 +28,10 @@ namespace ThirdTeam_Study
 
 
 
-    public class StudentList
+    public class StudentList : IEnumerable<Student>
     {
+
+
         private List<Student> Students = new List<Student>();
 
         public void AddStudent(Student student)
@@ -75,6 +78,15 @@ namespace ThirdTeam_Study
         {
             return Students;
         }
+        public IEnumerator<Student> GetEnumerator()
+        {
+            return Students.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
     }
 
@@ -98,10 +110,10 @@ namespace ThirdTeam_Study
             Console.WriteLine($"Tutor {NewTutor.Info.FirstName} added.");
         }
 
-        public void RemoveTutor(string firstname, string lastname) 
+        public void RemoveTutor(string firstname, string lastname)
         {
             var tutor = Tutors.Find(t => t.Info.FirstName == firstname && t.Info.LastName == lastname);
-            if (tutor != null) 
+            if (tutor != null)
             {
                 Console.WriteLine($"Tutor {tutor.ID} : {tutor.Info.FirstName} {tutor.Info.LastName} removed");
                 Tutors.Remove(tutor);
