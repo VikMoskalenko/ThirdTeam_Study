@@ -73,6 +73,31 @@ namespace ThirdTeam_Study
             Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
             Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetTutorFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
+
+
+            var studentList = new StudentList();
+            var tutor = new Tutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            studentList.AddStudent("1234567", "2016", "José", "Martínez");
+            studentList.AddStudent("1234568", "2017", "María", "García");
+            studentList.AddStudent("1234569", "2016", "Antonio", "López");
+            studentList.AddStudent("1234570", "2016", "Carmen", "Hernández");
+            studentList.AddStudent("1234571", "2017", "Luis", "González");
+            studentList.AddStudent("1234572", "2017", "Ana", "Rodríguez");
+            studentList.AddStudent("1234573", "2016", "Manuel", "Pérez");
+            studentList.AddStudent("1234574", "2017", "Isabel", "Sánchez");
+            studentList.AddStudent("1234575", "2016", "Francisco", "Ramírez");
+            studentList.AddStudent("1234576", "2017", "Laura", "Torres");
+            var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", studentList)
+            {
+                Tutor = tutor,
+                LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
+            };
+
+            lesson.LessonInfo();
+            UserInput("Enter score", input => lesson.SetUpdateScore("1234573", input));
+            UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
+            UserInput("Enter score", input => lesson.SetUpdateScore("12573", input));
+
         }
     }
 }
