@@ -99,5 +99,29 @@ namespace ThirdTeam_Study
             UserInput("Enter score", input => lesson.SetUpdateScore("12573", input));
 
         }
+        public static void UserInput(string Message, Action<string> setInput)
+        {
+            bool enterError;
+            do
+            {
+                enterError = false;
+                try
+                {
+                    Console.WriteLine(Message);
+                    string input = Console.ReadLine();
+                    if (input != null)
+                    {
+                        setInput(input);
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    enterError = true;
+
+                }
+            } while (enterError);
+        }
+
     }
 }
