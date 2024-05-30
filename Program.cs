@@ -75,8 +75,11 @@ namespace ThirdTeam_Study
             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetTutorFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
 
 
-            var studentList = new StudentList();
             var tutor = new Tutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            var tutorList = new TutorList();
+            tutorList.AddTutor(tutor);
+            tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
+            var studentList = new StudentList();
             studentList.AddStudent("1234567", "2016", "José", "Martínez");
             studentList.AddStudent("1234568", "2017", "María", "García");
             studentList.AddStudent("1234569", "2016", "Antonio", "López");
@@ -97,6 +100,15 @@ namespace ThirdTeam_Study
             UserInput("Enter score", input => lesson.SetUpdateScore("1234573", input));
             UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
             UserInput("Enter score", input => lesson.SetUpdateScore("12573", input));
+            studentList.RemoveStudent("1234573");
+            var customerService = new CustomerService("nostupidquestion@study.md")
+            {
+                Students = studentList,
+                Tutors = tutorList,
+                ServicePhone = "937-99-92"
+            };
+
+            customerService.GetSupportInfo();
 
         }
         public static void UserInput(string Message, Action<string> setInput)
