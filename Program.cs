@@ -6,8 +6,8 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            HomeWork hw1 = new(new Tutor("Jhon", "Dou", new DateOnly(1991, 1, 24))) 
-            { 
+            HomeWork hw1 = new(new Tutor("Jhon", "Dou", new DateOnly(1991, 1, 24)))
+            {
                 Id= Guid.NewGuid().ToString(),
             };
 
@@ -38,7 +38,7 @@ namespace ThirdTeam_Study
             {
                 Console.WriteLine("enter homework grade");
                 string value = Console.ReadLine() ?? string.Empty;
-                
+
                 if (!ushort.TryParse(value, out ushort result)) {
                     Console.WriteLine("Wrong format. Please enter number between 1 and 100");
                     continue;
@@ -109,6 +109,12 @@ namespace ThirdTeam_Study
             };
 
             customerService.GetSupportInfo();
+
+            lesson.StudentPresent("1234572");
+            lesson.StudentPresent("Luis", "González");
+            lesson.StudentPresent("Manuel", "Pérez");
+            lesson.StudentPresent("1212");
+
 
         }
         public static void UserInput(string Message, Action<string> setInput)
