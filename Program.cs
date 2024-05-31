@@ -115,6 +115,17 @@ namespace ThirdTeam_Study
             lesson.StudentPresent("Manuel", "Pérez");
             lesson.StudentPresent("1212");
 
+            var newBook = new Book
+            { ISBN = "0274878844",
+            Author = "Sacha Baron Cohen",
+            Name = "The Unauthorized Biography: From Cambridge to Kazakhstan",
+            Year = 2007,
+            Place = "London"};
+
+            var book2 = new Book();
+
+            Console.WriteLine(newBook.ToString());
+            Console.WriteLine(book2.ToString());
 
         }
         public static void UserInput(string Message, Action<string> setInput)
