@@ -41,6 +41,6 @@
             File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
         }
 
-        public string GetTutorFullName() => $"{Tutor.FirstName} {Tutor.LastName}";
+        public string GetTutorFullName() => $"{Tutor.Info.FirstName} {Tutor.Info.LastName}";
     }
 }
