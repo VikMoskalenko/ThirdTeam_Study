@@ -11,6 +11,10 @@ public class Student
 	
 	public DateOnly? DOB { get; set; }
 	
+	public Student()
+	{
+
+	}
 	public Student (string id, string studyyear, string name, string lastname)
 	{
 		Id = id;
