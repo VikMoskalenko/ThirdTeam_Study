@@ -117,15 +117,16 @@ namespace ThirdTeam_Study
 
             var newBook = new Book
             { ISBN = "0274878844",
-            Author = "Sacha Baron Cohen",
-            Name = "The Unauthorized Biography: From Cambridge to Kazakhstan",
-            Year = 2007,
-            Place = "London"};
+                Author = "Kathleen Tracy",
+                Name = "Sacha Baron Cohen: The Unauthorized Biography: From Cambridge to Kazakhstan",
+                Year = 2007,
+                Publisher = "SMP Paperback"
+            };
 
-            var book2 = new Book();
+            var newBook2 = new Book2("978-0995707221", "Design a Z80 Computer: A Practical Guide to Designing a Working Z80 Computer System", "J S Walker", 2023, "Oldfangled Publishing");
 
             Console.WriteLine(newBook.ToString());
-            Console.WriteLine(book2.ToString());
+            Console.WriteLine(newBook2.ToString());
 
         }
         public static void UserInput(string Message, Action<string> setInput)
