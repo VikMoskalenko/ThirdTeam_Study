@@ -5,41 +5,41 @@ namespace ThirdTeam_Study
 {
     public class Tutor
     {
-        public required string FirstName { get; set; }
+        public string ID { get; }
 
-        public required string LastName { get; set; }
+        public readonly PersonalInfo Info;
 
-        public DateOnly BDay { get; }
-
-        public const string DescriptionLink = "https//hillel.com/tutordesc/11dw2e2e34rw";
-
-        public int ID { get; }
+        public const string Description_link = "https//hillel.com/tutordesc/11dw2e2e34rw";
 
         public readonly int Age;
+
+        public int Seniority { get; private set; } = 0;
+
+        private const string Finish_str = "The lesson was finished!";
 
         [SetsRequiredMembers]
         public Tutor(string firstname, string lastname, DateOnly bday)
         {
-            FirstName = firstname;
-            LastName = lastname;
-            BDay = bday;
-            ID = Math.Abs((this.FirstName + this.LastName + this.BDay.ToString()).GetHashCode()); //самая примитивная реализация для примера, в идеале это
-            Age = DateTime.Now.Year - bday.Year;
+            Info = new PersonalInfo { FirstName = firstname, LastName = lastname, BDay = bday };
+            ID = Guid.NewGuid().ToString();
+            Age = Info.BDay.AgeCalculate();
         }
 
-        public string ToTeach()
+        public string ToTeachLesson(LessonDuration duration)
         {
-            return "I will teach you today!";
+            Seniority += (int)duration;
+            return Finish_str;
         }
 
-        public string ToTeach(int lesson_id)
+        public string ToTeachLesson() //урок по умолчанию 1 час
         {
-            return "I will teach you today on the lesson: " + lesson_id.ToString() + "!";
+            Seniority += (int)LessonDuration.OneHour;
+            return Finish_str;
         }
 
         public override string ToString()
         {
-            return "FirstName: " + FirstName + ", LastName: " + LastName + ", ID: " + ID + ", Age: " + Age;
+            return "FirstName: " + Info.FirstName + ", LastName: " + Info.LastName + ", ID: " + ID + ", Age: " + Age + ", Seniority: " + Seniority;
         }
 
 
