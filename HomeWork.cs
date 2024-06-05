@@ -15,8 +15,8 @@ namespace ThirdTeam_Study
 
         public string HomeWorkFile { get; set; } = string.Empty;
 
-        static readonly string basePath = AppDomain.CurrentDomain.BaseDirectory;
-        readonly string destinationDirectory = Path.Combine(basePath.Replace("bin\\Debug\\net8.0\\", ""), "uploads");
+        private static readonly string basePath = AppDomain.CurrentDomain.BaseDirectory;
+        private readonly string destinationDirectory = Path.Combine(basePath.Replace("bin\\Debug\\net8.0\\", ""), "uploads");
 
         public HomeWork(Student _student)
         {
