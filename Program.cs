@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using ThirdTeam_Study.Managers;
 
 namespace ThirdTeam_Study
 {
@@ -6,7 +7,15 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+
+            TutorFileManager f = new("Tutor.json");
+            Console.WriteLine(f.WriteToFile(TutorManager.CreateTutor("aaaaadedwdweda", "vvvvvv", new DateOnly(1998,10,11))));
+            
+
+
+
+
+            /*var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
             var tutorList = new TutorList();
             tutorList.AddTutor(tutor);
             tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
@@ -60,7 +69,7 @@ namespace ThirdTeam_Study
 
             Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
             Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
-            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
+            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));*/
 
         }
         public static void UserInput(string Message, Action<string> setInput)
