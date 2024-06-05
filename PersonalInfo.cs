@@ -4,11 +4,11 @@ namespace ThirdTeam_Study
     public record PersonalInfo
     {
 
-        public required string FirstName { get; init; }
+        public required string First_name { get; init; }
 
-        public required string LastName { get; init; }
+        public required string Last_name { get; init; }
 
-        public required DateOnly BDay { get; init; }
+        public required DateOnly Birthday { get; init; }
 
     }
 }

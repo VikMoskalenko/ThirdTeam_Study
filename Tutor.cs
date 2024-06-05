@@ -5,9 +5,9 @@ namespace ThirdTeam_Study
 {
     public class Tutor
     {
-        public readonly Guid Id;
+        public Guid Id { get; set; }
 
-        public readonly PersonalInfo Info;
+        public PersonalInfo Info { get; set; }
 
         public int Age { get; set; }
 
@@ -16,13 +16,6 @@ namespace ThirdTeam_Study
         public Tutor()
         {
             
-        }
-
-        public Tutor(Guid id, PersonalInfo info)
-        {
-            Info = new PersonalInfo { First_name = info.First_name, Last_name = info.Last_name, Birthday = info.Birthday };
-            Id = id;
-            Age = Info.Birthday.AgeCalculate();
         }
 
         /*
