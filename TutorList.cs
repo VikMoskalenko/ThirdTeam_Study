@@ -18,7 +18,7 @@ namespace ThirdTeam_Study
 
         public void AddTutor(string firstname, string lastname, DateOnly bday)
         {
-            var NewTutor = new Tutor(firstname, lastname, bday);
+            var NewTutor = TutorManager.CreateTutor(firstname, lastname, bday);
             Tutors.Add(NewTutor);
             Console.WriteLine($"Tutor {NewTutor.Info.First_name} added.");
         }
