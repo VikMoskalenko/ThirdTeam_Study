@@ -6,7 +6,7 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            var tutor = new Tutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
             var tutorList = new TutorList();
             tutorList.AddTutor(tutor);
             tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));

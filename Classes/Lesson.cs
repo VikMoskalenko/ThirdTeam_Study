@@ -50,7 +50,7 @@ namespace ThirdTeam_Study
         }
         public void LessonInfo()
         {
-            Console.WriteLine($"Lesson {LessonType} with {Tutor.Info.FirstName} {Tutor.Info.LastName}");
+            Console.WriteLine($"Lesson {LessonType} with {Tutor.Info.First_name} {Tutor.Info.Last_name}");
             LessonStartAt();
             Console.WriteLine($"Theme: {LessonTheme} ");
         }
