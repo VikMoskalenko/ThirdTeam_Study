@@ -3,9 +3,10 @@ namespace ThirdTeam_Study
 {
     public static class DateOnlyExtention
     {
-        public static int AgeCalculate(this DateOnly b_day)
+        public static int ToCalculateAge(this DateOnly b_day)
         {
-            return DateTime.Now.Year - b_day.Year;
+            DateOnly today = new (DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            return (b_day.Year < today.Year) && (b_day.Month <= today.Month) && (b_day.Day <= today.Day) ? today.Year - b_day.Year : today.Year - b_day.Year - 1;
         }
     }
 }
