@@ -19,6 +19,5 @@
     <Folder Include="Extentions\" />
     <Folder Include="Records\" />
     <Folder Include="Classes\" />
-    <Folder Include="Managers\" />
   </ItemGroup>
 </Project>
