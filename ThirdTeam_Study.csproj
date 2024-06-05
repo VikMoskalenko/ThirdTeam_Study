@@ -13,6 +13,7 @@
     <None Remove="Records\" />
     <None Remove="Classes\" />
     <None Remove="Managers\" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
@@ -20,6 +21,7 @@
     <Folder Include="Records\" />
     <Folder Include="Classes\" />
     <Folder Include="Managers\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
