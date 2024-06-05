@@ -8,7 +8,7 @@ namespace ThirdTeam_Study
 
         public required string LastName { get; init; }
 
-        public DateOnly BDay { get; init; }
+        public required DateOnly BDay { get; init; }
 
     }
 }

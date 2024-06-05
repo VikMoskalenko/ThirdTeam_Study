@@ -5,25 +5,27 @@ namespace ThirdTeam_Study
 {
     public class Tutor
     {
-        public string ID { get; }
+        public readonly Guid Id;
 
         public readonly PersonalInfo Info;
 
-        public const string Description_link = "https//hillel.com/tutordesc/11dw2e2e34rw";
+        public int Age { get; set; }
 
-        public readonly int Age;
+        public int Seniority { get; set; }
 
-        public int Seniority { get; private set; } = 0;
-
-        private const string Finish_str = "The lesson was finished!";
-
-        [SetsRequiredMembers]
-        public Tutor(string firstname, string lastname, DateOnly bday)
+        public Tutor()
         {
-            Info = new PersonalInfo { FirstName = firstname, LastName = lastname, BDay = bday };
-            ID = Guid.NewGuid().ToString();
-            Age = Info.BDay.AgeCalculate();
+            
         }
+
+        public Tutor(Guid id, PersonalInfo info)
+        {
+            Info = new PersonalInfo { First_name = info.First_name, Last_name = info.Last_name, Birthday = info.Birthday };
+            Id = id;
+            Age = Info.Birthday.AgeCalculate();
+        }
+
+        /*
 
         public string ToTeachLesson(LessonDuration duration)
         {
@@ -41,7 +43,7 @@ namespace ThirdTeam_Study
         {
             return "FirstName: " + Info.FirstName + ", LastName: " + Info.LastName + ", ID: " + ID + ", Age: " + Age + ", Seniority: " + Seniority;
         }
-
+      */
 
     }
 
