@@ -14,17 +14,17 @@ namespace ThirdTeam_Study.Managers
 
         }
         
-        public string GetStudentInfo()
+        public static string GetStudentInfo()
         {
             return "Hello, student  ";
         }
 
-        public string  GetStudentInfo(string Name, string LastName, int Id)
+        public static string  GetStudentInfo(string Name, string LastName, int Id)
         {
             return $"Id: {Id}, name : {Name}, lastName {LastName} ";
         }
 
-        public string StudentSayHello(string Name)
+        public static string StudentSayHello(string Name)
         {
             return $"Hello, I am {Name}";
         }
