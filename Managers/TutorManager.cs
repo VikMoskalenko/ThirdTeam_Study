@@ -16,7 +16,7 @@ namespace ThirdTeam_Study
             return new Tutor
             {
                 Info = new PersonalInfo { First_name = first_name, Last_name = last_name, Birthday = b_day },
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Age = b_day.ToCalculateAge(),
                 Seniority = 0
             };
