@@ -7,25 +7,8 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-
-            TutorManager f = new();
-            f.CreateTutor("aasas", "vvverervvv", new DateOnly(1987,10,11));
-
-
-            List<Tutor> t = f.FileManager.ReadAllFromFile();
-            foreach (var tutor in t) Console.WriteLine(tutor.ToString());
-            Console.WriteLine();
-            //Console.WriteLine(f.GetTutorById(new Guid("307643a6-34ad-487a-a911-0f3305a49553")).Id.ToString());
-
-            //Console.WriteLine(f.DeleteTutor(new Guid("838e5edb-f6e4-4806-ab06-d13b34dd98bf")));
-            Console.WriteLine(f.UpdateTutor(new Guid("d82ba7a9-c034-48da-999b-a2d807bce744"),"qqqq", "wwww",new DateOnly(2012,06,08)));
-            Console.WriteLine();
-
-            t = f.FileManager.ReadAllFromFile();
-            foreach (var tutor in t) Console.WriteLine(tutor.ToString()); Console.WriteLine();
-
-
-            /*var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            TutorManager tutorManager = new();
+            var tutor = tutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
             var tutorList = new TutorList();
             tutorList.AddTutor(tutor);
             tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
@@ -79,7 +62,7 @@ namespace ThirdTeam_Study
 
             Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
             Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
-            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));*/
+            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
 
         }
         public static void UserInput(string Message, Action<string> setInput)
