@@ -45,9 +45,9 @@
 
        
 
-        public class Properties() 
+        public class Properties
         {
-            public Properties(string language, string country) : this()
+            public Properties(string language, string country)
             {
                 Language = language;
                 Country = country;
