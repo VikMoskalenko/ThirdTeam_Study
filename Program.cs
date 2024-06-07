@@ -8,9 +8,11 @@ namespace ThirdTeam_Study
         static void Main()
         {
 
-            TutorFileManager f = new("Tutor.json");
-            Console.WriteLine(f.WriteToFile(TutorManager.CreateTutor("aaaaadedwdweda", "vvvvvv", new DateOnly(1998,10,11))));
-            
+            TutorManager f = new();
+            Console.WriteLine(f.CreateTutor("wedewfef", "vvvvvv", new DateOnly(1998,10,11)));
+            List<Tutor> t = f.FileManager.ReadAllFromFile();
+
+            foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString());
 
 
 

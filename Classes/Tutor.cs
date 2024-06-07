@@ -7,7 +7,11 @@ namespace ThirdTeam_Study
     {
         public Guid Id { get; set; }
 
-        public required PersonalInfo Info { get; set; }
+        public required string First_name { get; init; } //change to FirtsName
+
+        public required string Last_name { get; init; }
+
+        public required DateOnly Birthday { get; init; }
 
         public int Age { get; set; }
 
