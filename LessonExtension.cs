@@ -9,7 +9,7 @@ namespace ThirdTeam_Study
 {
     static class LessontExtension
     {
-        public static void StudentPresent(this Lesson lesson, string id)
+        public static void StudentPresent(this Lesson lesson, int id)
         {
             bool studentFound = false;
             foreach (Student student in lesson.Students)
