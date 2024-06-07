@@ -19,7 +19,7 @@ namespace ThirdTeam_Study
             Console.WriteLine($"Student {student.LastName} added.");
         }
 
-        public void AddStudent(string id, string studyyear, string name, string lastname)
+        public void AddStudent(int id, string studyyear, string name, string lastname)
         {
             var NewStudent = new Student(id, studyyear, name, lastname)
             { LastName = lastname, Name = name };
@@ -39,7 +39,7 @@ namespace ThirdTeam_Study
                 Console.WriteLine("Student not found");
             }
         }
-        public void RemoveStudent(string id)
+        public void RemoveStudent(int id)
         {
             var student = Students.Find(t => t.Id == id);
             if (student != null)

@@ -11,16 +11,16 @@ namespace ThirdTeam_Study
             tutorList.AddTutor(tutor);
             tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
             var studentList = new StudentList();
-            studentList.AddStudent("1234567", "2016", "José", "Martínez");
-            studentList.AddStudent("1234568", "2017", "María", "García");
-            studentList.AddStudent("1234569", "2016", "Antonio", "López");
-            studentList.AddStudent("1234570", "2016", "Carmen", "Hernández");
-            studentList.AddStudent("1234571", "2017", "Luis", "González");
-            studentList.AddStudent("1234572", "2017", "Ana", "Rodríguez");
-            studentList.AddStudent("1234573", "2016", "Manuel", "Pérez");
-            studentList.AddStudent("1234574", "2017", "Isabel", "Sánchez");
-            studentList.AddStudent("1234575", "2016", "Francisco", "Ramírez");
-            studentList.AddStudent("1234576", "2017", "Laura", "Torres");
+            studentList.AddStudent(1234567, "2016", "José", "Martínez");
+            studentList.AddStudent(1234568, "2017", "María", "García");
+            studentList.AddStudent(1234569, "2016", "Antonio", "López");
+            studentList.AddStudent(1234570, "2016", "Carmen", "Hernández");
+            studentList.AddStudent(1234571, "2017", "Luis", "González");
+            studentList.AddStudent(1234572, "2017", "Ana", "Rodríguez");
+            studentList.AddStudent(1234573, "2016", "Manuel", "Pérez");
+            studentList.AddStudent(1234574, "2017", "Isabel", "Sánchez");
+            studentList.AddStudent(1234575, "2016", "Francisco", "Ramírez");
+            studentList.AddStudent(1234576, "2017", "Laura", "Torres");
             var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", studentList)
             {
                 Tutor = tutor,
@@ -28,10 +28,10 @@ namespace ThirdTeam_Study
             };
 
             lesson.LessonInfo();
-            UserInput("Enter score", input => lesson.SetUpdateScore("1234573", input));
+            UserInput("Enter score", input => lesson.SetUpdateScore(1234573, input));
             UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
-            UserInput("Enter score", input => lesson.SetUpdateScore("12573", input));
-            studentList.RemoveStudent("1234573");
+            UserInput("Enter score", input => lesson.SetUpdateScore(12573, input));
+            studentList.RemoveStudent(1234573);
             var customerService = new CustomerService("nostupidquestion@study.md")
             {
                 Students = studentList,
