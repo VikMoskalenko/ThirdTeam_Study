@@ -18,7 +18,7 @@ namespace ThirdTeam_Study
         public required Tutor Tutor { get; set; }
         public string LessonTheme { get; set; }
         public required DateTime LessonStart { get; set; }
-        private Dictionary<string, int> LessonScore;
+        private Dictionary<int, int> LessonScore;
         public Lesson(string lessonType, string lessonTheme, StudentList students)
         {
             Students = CheckCapacity(students);
@@ -50,13 +50,13 @@ namespace ThirdTeam_Study
         }
         public void LessonInfo()
         {
-            Console.WriteLine($"Lesson {LessonType} with {Tutor.Info.FirstName} {Tutor.Info.LastName}");
+            Console.WriteLine($"Lesson {LessonType} with {Tutor.Info.First_name} {Tutor.Info.Last_name}");
             LessonStartAt();
             Console.WriteLine($"Theme: {LessonTheme} ");
         }
-        private Dictionary<string, int> LessonScoreInit()
+        private Dictionary<int, int> LessonScoreInit()
         {
-            var lessonScore = new Dictionary<string, int>();
+            var lessonScore = new Dictionary<int, int>();
 
             foreach (Student student in Students)
             {
@@ -76,7 +76,7 @@ namespace ThirdTeam_Study
             return scoreInt;
         }
 
-        public void SetUpdateScore(string id, string score)
+        public void SetUpdateScore(int id, string score)
         {
 
             string? firstName = null;
@@ -104,7 +104,7 @@ namespace ThirdTeam_Study
 
         public void SetUpdateScore(string firstName, string lastName, string score)
         {
-            string? id = null;
+            int id = 0 ;
 
             foreach (Student student in Students)
             {
@@ -114,7 +114,7 @@ namespace ThirdTeam_Study
                     break;
                 }
             }
-            if (id != null)
+            if (id != 0)
             {
                 LessonScore[id] = CorrectScore(score);
                 Console.WriteLine($"Score for student: {firstName} {lastName} : {score}");
