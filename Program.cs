@@ -6,76 +6,7 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            HomeWork hw1 = new(new Tutor("Jhon", "Dou", new DateOnly(1991, 1, 24)))
-            {
-                Id= Guid.NewGuid().ToString(),
-            };
-
-            while (true)
-            {
-                Console.WriteLine("Enter path to your home work file:");
-                string sourceFilePath = Console.ReadLine() ?? string.Empty;
-
-                if (String.IsNullOrEmpty(sourceFilePath)) {
-                    Console.WriteLine("You need to paste path to home work file");
-                }
-
-                try
-                {
-                    hw1.UploadHomeWork(sourceFilePath ?? string.Empty);
-                    Console.WriteLine("File saved successfully.");
-                    break;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error occur: {ex.Message}");
-                }
-            }
-
-            Console.WriteLine();
-
-            while (true)
-            {
-                Console.WriteLine("enter homework grade");
-                string value = Console.ReadLine() ?? string.Empty;
-
-                if (!ushort.TryParse(value, out ushort result)) {
-                    Console.WriteLine("Wrong format. Please enter number between 1 and 100");
-                    continue;
-                } else if (result < 0 || result > 100)
-                {
-                    Console.WriteLine("Grade should be between 1 and 100");
-                    continue;
-                } else
-                {
-                    hw1.Grade = result;
-                }
-                break;
-            }
-
-            Console.WriteLine();
-
-            while (true)
-            {
-                Console.WriteLine("Add some comment or leave it empty:");
-                string comment = Console.ReadLine() ?? string.Empty;
-
-                if (!Regex.IsMatch(comment, @"[A-Za-z]?"))
-                {
-                    Console.WriteLine("Only letters allowed");
-                }
-                else {
-                    hw1.Comment = comment;
-                    break;
-                }
-            }
-
-            Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
-            Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
-            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetTutorFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
-
-
-            var tutor = new Tutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
             var tutorList = new TutorList();
             tutorList.AddTutor(tutor);
             tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
@@ -108,25 +39,28 @@ namespace ThirdTeam_Study
                 ServicePhone = "937-99-92"
             };
 
+            Student firstStudent = studentList.First();
+
             customerService.GetSupportInfo();
 
-            lesson.StudentPresent("1234572");
-            lesson.StudentPresent("Luis", "González");
-            lesson.StudentPresent("Manuel", "Pérez");
-            lesson.StudentPresent("1212");
-
-            var newBook = new Book
-            { ISBN = "0274878844",
-                Author = "Kathleen Tracy",
-                Name = "Sacha Baron Cohen: The Unauthorized Biography: From Cambridge to Kazakhstan",
-                Year = 2007,
-                Publisher = "SMP Paperback"
+            HomeWork hw1 = new(firstStudent)
+            {
+                Id = Guid.NewGuid()
             };
 
-            var newBook2 = new Book2("978-0995707221", "Design a Z80 Computer: A Practical Guide to Designing a Working Z80 Computer System", "J S Walker", 2023, "Oldfangled Publishing");
+            hw1.SubmitHW();
 
-            Console.WriteLine(newBook.ToString());
-            Console.WriteLine(newBook2.ToString());
+            Console.WriteLine();
+
+            hw1.AssertHW();
+
+            Console.WriteLine();
+
+            hw1.AddHWComment();
+
+            Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
+            Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
+            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
 
         }
         public static void UserInput(string Message, Action<string> setInput)
