@@ -15,10 +15,10 @@ namespace ThirdTeam_Study
             List<Tutor> t = f.FileManager.ReadAllFromFile();
             foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString()+" "+ tutor.FirstName+" "+ tutor.LastName+" "+ tutor.Age.ToString());
             Console.WriteLine();
-            //Console.WriteLine(f.GetTutorById(new Guid("09327d5c-6d03-43cf-a2d3-462d50ca20b8")).Id.ToString());
+            //Console.WriteLine(f.GetTutorById(new Guid("307643a6-34ad-487a-a911-0f3305a49553")).Id.ToString());
 
-            //Console.WriteLine(f.DeleteTutor(new Guid("6de37964-85bd-4c3e-a901-e531bc43fceb")));
-            Console.WriteLine(f.UpdateTutor(new Guid("429b1c23-6663-41b0-b1ba-d4a87deb920c"),"AAAA", "TTTT"));
+            //Console.WriteLine(f.DeleteTutor(new Guid("838e5edb-f6e4-4806-ab06-d13b34dd98bf")));
+            Console.WriteLine(f.UpdateTutor(new Guid("d82ba7a9-c034-48da-999b-a2d807bce744"),"qqqq", "wwww",new DateOnly(2012,06,08)));
             Console.WriteLine();
 
             t = f.FileManager.ReadAllFromFile();

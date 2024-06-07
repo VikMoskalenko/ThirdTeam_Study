@@ -76,8 +76,8 @@ namespace ThirdTeam_Study
         public bool DeleteTutor(Guid id)
         {
             var tutor_list = FileManager.ReadAllFromFile();
-            tutor_list.RemoveAll(x => x.Id == id);
-            if (tutor_list.Count == 0) return false;
+            if (GetTutorById(id) == null) return false;
+            tutor_list.RemoveAll(x => x.Id == id);           
             FileManager.ClearFile();
             FileManager.WriteToFile(tutor_list);
             return true;
