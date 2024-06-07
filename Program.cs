@@ -10,9 +10,12 @@ namespace ThirdTeam_Study
 
             TutorManager f = new();
             Console.WriteLine(f.CreateTutor("wedewfef", "vvvvvv", new DateOnly(1998,10,11)));
-            List<Tutor> t = f.FileManager.ReadAllFromFile();
 
+
+            List<Tutor> t = f.FileManager.ReadAllFromFile();
             foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString());
+            Console.WriteLine();
+            Console.WriteLine(f.GetTutorById(new Guid("09327d5c-6d03-43cf-a2d3-462d50ca20b8")).Id.ToString());
 
 
 

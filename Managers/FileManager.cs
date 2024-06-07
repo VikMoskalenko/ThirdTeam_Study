@@ -22,8 +22,7 @@ namespace ThirdTeam_Study.Managers
         {
             if (obj == null) throw new NullReferenceException();
             try
-            {
-              
+            {            
                 string json_str = JsonConvert.SerializeObject(obj,settings);
                 if (!File.Exists(FilePath)) File.Create(FilePath).Close();
                 File.WriteAllText(FilePath, ToParceJSON(json_str));
@@ -42,8 +41,7 @@ namespace ThirdTeam_Study.Managers
             }
               
             try
-            {
-               
+            {              
                 string json_str = File.ReadAllText(FilePath);               
                 tutors = JsonConvert.DeserializeObject<List<Tutor>>(json_str);//не работает десериализация
                 return tutors;

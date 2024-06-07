@@ -32,9 +32,9 @@ namespace ThirdTeam_Study
         }
 
 
-        public Tutor GetTutorById(Guid id)
+        public Tutor? GetTutorById(Guid id)
         {
-            return CreateTutor("","",new DateOnly(2000,10,10));
+            return FileManager.ReadAllFromFile().Find(x => x.Id == id);
         }
 
         public bool UpdateTutor(Guid id)
