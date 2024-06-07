@@ -13,7 +13,7 @@ namespace ThirdTeam_Study
 
 
             List<Tutor> t = f.FileManager.ReadAllFromFile();
-            foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString()+" "+ tutor.FirstName+" "+ tutor.LastName+" "+ tutor.Age.ToString());
+            foreach (var tutor in t) Console.WriteLine(tutor.ToString());
             Console.WriteLine();
             //Console.WriteLine(f.GetTutorById(new Guid("307643a6-34ad-487a-a911-0f3305a49553")).Id.ToString());
 
@@ -22,7 +22,7 @@ namespace ThirdTeam_Study
             Console.WriteLine();
 
             t = f.FileManager.ReadAllFromFile();
-            foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString() + " " + tutor.FirstName + " " + tutor.LastName + " "+ tutor.Age.ToString()); Console.WriteLine();
+            foreach (var tutor in t) Console.WriteLine(tutor.ToString()); Console.WriteLine();
 
 
             /*var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
