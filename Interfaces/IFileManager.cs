@@ -5,6 +5,7 @@ namespace ThirdTeam_Study.Interfaces
     {
         public bool WriteToFile(T obj);
         public List<T> ReadAllFromFile();
+        public bool ClearFile();
         protected string ToParceJSON(string json);
     }
 }

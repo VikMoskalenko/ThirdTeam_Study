@@ -37,13 +37,20 @@ namespace ThirdTeam_Study
             return FileManager.ReadAllFromFile().Find(x => x.Id == id);
         }
 
-        public bool UpdateTutor(Guid id)
+        /*public bool UpdateTutor(Guid id, string first_name, string last_name, DateOnly birthday)
         {
+            var tutor = FileManager.ReadAllFromFile().Find(x => x.Id == id)
+            
             return true;
-        }
+        }*/
 
         public bool DeleteTutor(Guid id)
         {
+            var tutor_list = FileManager.ReadAllFromFile();
+            //tutor_list.Remove(GetTutorById(id));
+            tutor_list.RemoveAll(x => x.Id == id);
+            FileManager.ClearFile();
+            FileManager.WriteToFile(tutor_list);
             return true;
         }
 

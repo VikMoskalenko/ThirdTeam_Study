@@ -31,6 +31,24 @@ namespace ThirdTeam_Study.Managers
             catch (Exception) { return false; }      
         }
 
+        public bool WriteToFile(List<Tutor> list)
+        {
+            if (list.Count == 0) return true;
+            try
+            {
+                List<string> json_list = new();
+                foreach (Tutor tutor in list)
+                    json_list.Add(JsonConvert.SerializeObject(tutor, settings));
+
+                if (!File.Exists(FilePath)) File.Create(FilePath).Close();
+
+                foreach (string json in json_list)
+                    File.WriteAllText(FilePath, ToParceJSON(json));
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+
         public List<Tutor> ReadAllFromFile()
         {
             List<Tutor> tutors = new();
@@ -47,7 +65,17 @@ namespace ThirdTeam_Study.Managers
                 return tutors;
                
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); return tutors; }
+            catch (Exception ex) { return tutors; }
+        }
+
+        public bool ClearFile()
+        {
+            try
+            {
+                File.Delete(FilePath);
+                return true;
+            }
+            catch (Exception) { return false; }
         }
 
         protected string ToParceJSON(string json)
