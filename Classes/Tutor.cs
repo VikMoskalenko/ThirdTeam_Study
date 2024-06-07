@@ -7,11 +7,11 @@ namespace ThirdTeam_Study
     {
         public Guid Id { get; set; }
 
-        public required string First_name { get; init; } //change to FirtsName
+        public required string FirstName { get; set; } //change to FirtsName
 
-        public required string Last_name { get; init; }
+        public required string LastName { get; set; }
 
-        public required DateOnly Birthday { get; init; }
+        public required DateOnly Birthday { get; set; }
 
         public int Age { get; set; }
 

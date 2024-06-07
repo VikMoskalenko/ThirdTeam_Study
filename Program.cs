@@ -9,20 +9,20 @@ namespace ThirdTeam_Study
         {
 
             TutorManager f = new();
-            Console.WriteLine(f.CreateTutor("wedewfef", "vvvvvv", new DateOnly(1998,10,11)));
+            f.CreateTutor("aasas", "vvverervvv", new DateOnly(1987,10,11));
 
 
             List<Tutor> t = f.FileManager.ReadAllFromFile();
-            foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString());
+            foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString()+" "+ tutor.FirstName+" "+ tutor.LastName+" "+ tutor.Age.ToString());
             Console.WriteLine();
             //Console.WriteLine(f.GetTutorById(new Guid("09327d5c-6d03-43cf-a2d3-462d50ca20b8")).Id.ToString());
 
-            Console.WriteLine(f.DeleteTutor(new Guid("4714355d-e2bb-4593-8a01-4afea73f0036")));
+            //Console.WriteLine(f.DeleteTutor(new Guid("6de37964-85bd-4c3e-a901-e531bc43fceb")));
+            Console.WriteLine(f.UpdateTutor(new Guid("429b1c23-6663-41b0-b1ba-d4a87deb920c"),"AAAA", "TTTT"));
             Console.WriteLine();
 
             t = f.FileManager.ReadAllFromFile();
-              foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString());
-              Console.WriteLine();
+            foreach (var tutor in t) Console.WriteLine(tutor.Id.ToString() + " " + tutor.FirstName + " " + tutor.LastName + " "+ tutor.Age.ToString()); Console.WriteLine();
 
 
             /*var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
