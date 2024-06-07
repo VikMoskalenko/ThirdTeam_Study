@@ -5,6 +5,7 @@ namespace ThirdTeam_Study
     public class HomeWork
     {
         private readonly Student Student;
+        public record Submission(string StudentFullName, ushort HomeWorkNumber, string FilePath, string Comment, ushort Grade);
 
         const string noFile = "File not found";
         public ushort HomeWorkNumber { get; set; } = 1;
@@ -12,7 +13,7 @@ namespace ThirdTeam_Study
         public string Comment { get; set; } = string.Empty;
         public ushort Grade { get; set; }
 
-        protected string HomeWorkFile { get; set; } = string.Empty;
+        public string HomeWorkFile { get; set; } = string.Empty;
 
         private static readonly string basePath = AppDomain.CurrentDomain.BaseDirectory;
         private readonly string destinationDirectory = Path.Combine(basePath.Replace("bin\\Debug\\net8.0\\", ""), "uploads");
@@ -109,6 +110,13 @@ namespace ThirdTeam_Study
                     break;
                 }
             }
+        }
+    }
+    public static class HomeWorkExtensions
+    {
+        public static bool IsSubmitted(this HomeWork homework)
+        {
+            return !string.IsNullOrEmpty(homework.HomeWorkFile);
         }
     }
 }
