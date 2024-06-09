@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-
-namespace ThirdTeam_Study.Managers
+﻿namespace ThirdTeam_Study.Managers
 {
     public class FileManager 
     {
@@ -27,8 +24,9 @@ namespace ThirdTeam_Study.Managers
                 if (!File.Exists(FilePath)) File.Create(FilePath).Close();
                 File.WriteAllText(FilePath, ToParceJSON(json_str));
                 return true;
+                
             }
-            catch (Exception) { return false; }      
+            catch (Exception ex) { throw new Exception("File error", ex); }      
         }
 
         public bool WriteToFile(List<Tutor> list)
