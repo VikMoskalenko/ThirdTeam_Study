@@ -24,7 +24,7 @@ namespace ThirdTeam_Study
 
         public override string ToString()
         {
-            return Id.ToString() + " " + FirstName + " " + LastName + " " + Birthday + " " + Age.ToString() + " " + Seniority.ToString();
+            return "[ ID ]: " + Id.ToString() + " [ FIRST NAME ]: " + FirstName + " [ LAST NAME ]: " + LastName + " [ BIRTHDAY ]: " + Birthday + " [ AGE ]: " + Age.ToString() + " [ SENIORITY ]: " + Seniority.ToString();
         }
 
     }
