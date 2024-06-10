@@ -1,4 +1,6 @@
-﻿namespace ThirdTeam_Study
+﻿using ThirdTeam_Study.Managers;
+
+namespace ThirdTeam_Study
 {
     internal class EdPlatform
     {
@@ -15,35 +17,12 @@
 
         public Properties PlatformProperties { get; }
         
-        public void LaunchMeeting(int currentStudentsCount)
-        {
-            if(currentStudentsCount <= MaxStudentsCount)
-            {
-                Console.WriteLine("Launch meeting");
-            }
-            else
-            {
-                Console.WriteLine("Limit of students reached.");
-            }
-        }
-        public void LaunchMeeting()
-        {
-            Console.WriteLine("Launch meeting");
-        }
-        
-        public void ConnectToMeeting()
-        {
-            Console.WriteLine("Connect to meeting");
-        }
-
         public int ThrowConnectionError()
         {
             // Some logic, that controls properties.Language state
-            Console.WriteLine("Connection Error!");
+            OutputManager.Write("Connection Error!");
             return 400;
         }
-
-       
 
         public class Properties
         {
