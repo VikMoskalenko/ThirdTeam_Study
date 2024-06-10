@@ -19,6 +19,5 @@
     <Folder Include="Enums\" />
     <Folder Include="Extentions\" />
     <Folder Include="Records\" />
-    <Folder Include="Classes\" />
   </ItemGroup>
 </Project>
