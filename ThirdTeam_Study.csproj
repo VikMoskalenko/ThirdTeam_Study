@@ -15,8 +15,4 @@
     <None Remove="Classes\" />
     <None Remove="Managers\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extentions\" />
-    <Folder Include="Records\" />
-  </ItemGroup>
 </Project>

@@ -4,62 +4,87 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThirdTeam_Study.Managers;
 
 namespace ThirdTeam_Study
 {
     public class StudentList : IEnumerable<Student>
     {
+        private List<Student> _students = new List<Student>();
 
-
-        private List<Student> Students = new List<Student>();
-
-        public void AddStudent(Student student)
+        public bool AddStudent(Student student)
         {
-            Students.Add(student);
-            Console.WriteLine($"Student {student.LastName} added.");
+            _students.Add(student);
+            OutputManager.Write($"Student {student.LastName} added.");
+            return true;
         }
 
-        public void AddStudent(int id, string studyyear, string name, string lastname)
+        public bool AddStudent(Guid id, string studyyear, string name, string lastname)
         {
             var NewStudent = new Student(id, studyyear, name, lastname)
             { LastName = lastname, Name = name };
-            Students.Add(NewStudent);
-            Console.WriteLine($"Student {NewStudent.LastName} added.");
+            _students.Add(NewStudent);
+            OutputManager.Write($"Student {NewStudent.LastName} added.");
+            return true;
         }
-        public void RemoveStudent(string name, string lastname)
+
+        public Student? Find(Predicate<Student> match)
         {
-            var student = Students.Find(t => t.Name == name && t.LastName == lastname);
+            if(match != null)
+            {
+                for (int i = 0; i < _students.Count; i++)
+                {
+                    if (match(_students[i]))
+                    {
+                        return _students[i];
+                    }
+                }
+                return default;
+            } 
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool RemoveStudent(string name, string lastname)
+        {
+            var student = _students.Find(t => t.Name == name && t.LastName == lastname);
             if (student != null)
             {
-                Console.WriteLine($"Student {student.Id} : {student.Name} {student.LastName} removed");
-                Students.Remove(student);
+                OutputManager.Write($"Student {student.Id} : {student.Name} {student.LastName} removed");
+                _students.Remove(student);
+                return true;
             }
             else
             {
-                Console.WriteLine("Student not found");
+                OutputManager.Write("Student not found");
+                return false;
             }
         }
-        public void RemoveStudent(int id)
+        public bool RemoveStudent(Guid id)
         {
-            var student = Students.Find(t => t.Id == id);
+            var student = _students.Find(t => t.Id == id);
             if (student != null)
             {
-                Console.WriteLine($"Student {student.Id} : {student.Name} {student.LastName} removed");
-                Students.Remove(student);
+                OutputManager.Write($"Student {student.Id} : {student.Name} {student.LastName} removed");
+                _students.Remove(student);
+                return true;
             }
             else
             {
-                Console.WriteLine("Student not found");
+                OutputManager.Write("Student not found");
+                return false;
             }
         }
 
         public List<Student> GetAll()
         {
-            return Students;
+            return _students;
         }
         public IEnumerator<Student> GetEnumerator()
         {
-            return Students.GetEnumerator();
+            return _students.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

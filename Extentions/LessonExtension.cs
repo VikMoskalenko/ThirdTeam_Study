@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using ThirdTeam_Study.Managers;
 
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.Extentions
 {
     static class LessontExtension
     {
@@ -16,14 +17,14 @@ namespace ThirdTeam_Study
             {
                 if (student.Id == id)
                 {
-                    Console.WriteLine($"Student {student.Name} {student.LastName} is on {lesson.LessonType} lesson");
+                    OutputManager.Write($"Student {student.Name} {student.LastName} is on {lesson.LessonType} lesson");
                     studentFound = true;
                     break;
                 }
             }
             if (!studentFound)
             {
-                Console.WriteLine($"Student  with ID: {id} not found");
+                OutputManager.Write($"Student  with ID: {id} not found");
             }
         }
 

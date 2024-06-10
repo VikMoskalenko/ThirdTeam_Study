@@ -5,12 +5,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.Records
 {
     public record Book()
     {
         private string _isbn = "000-0-00000-000-0";
-        private string _name  = "No name";
+        private string _name = "No name";
         private string _author = "No author";
         private int _year = 1990;
         private string _publisher = "No publisher";
@@ -60,7 +60,7 @@ namespace ThirdTeam_Study
         private int CheckYear(int year)
         {
 
-            if (year < 0 || year > DateTime.Now.Year) 
+            if (year < 0 || year > DateTime.Now.Year)
             {
                 throw new ArgumentException("Icorrect Year!");
             }
@@ -82,7 +82,7 @@ namespace ThirdTeam_Study
         public string Author { get; init; } = Author;
         public int Year { get; init; } = CheckYear(Year);
         public string Publisher { get; init; } = Publisher;
-        
+
         private static string CheckISBN(string isbn)
         {
 

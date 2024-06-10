@@ -11,16 +11,31 @@ namespace ThirdTeam_Study.Managers
     {
         public EdPlatformManager() { }
 
+        public EdPlatform EdPlatformInstance = EdPlatform.Initialize();
+
         public void SignUp(Student student) 
         {
-
+            EdPlatformInstance.Students.AddStudent(student);
+        }
+        public void SignUp(Tutor tutor)
+        {
+            EdPlatformInstance.Tutors.AddTutor(tutor);
         }
 
-        public void GetSupportInfo(EdPlatform edPlatform)
+        public bool RemoveStudent(Student student)
         {
-            OutputManager.Write($"Service: {edPlatform.ServiceName}");
-            OutputManager.Write($"Service Email: {edPlatform.ServiceEmail}");
-            OutputManager.Write($"Service Phone Number: {edPlatform.ServicePhone}");
+            return EdPlatformInstance.Students.RemoveStudent(student.Id);
+        }
+        public bool RemoveTutor(Tutor tutor)
+        {
+            return EdPlatformInstance.Tutors.RemoveTutor(tutor.Id);
+        }
+
+        public void GetSupportInfo()
+        {
+            OutputManager.Write($"Service: {EdPlatformInstance.ServiceName}");
+            OutputManager.Write($"Service Email: {EdPlatformInstance.ServiceEmail}");
+            OutputManager.Write($"Service Phone Number: {EdPlatformInstance.ServicePhone}");
         }
         public static int ThrowConnectionException()
         {

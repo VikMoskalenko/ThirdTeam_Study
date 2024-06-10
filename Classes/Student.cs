@@ -6,7 +6,7 @@ public class Student
 	public readonly string StudyYear;
 	public const string University = "Hogwarts";
 
-    public int Id { get; }
+    public Guid Id { get; }
 	public required string Name { get; set; }
 	public required string LastName { get; set; }
 	
@@ -16,7 +16,7 @@ public class Student
     {
 
     }
-    public Student(int id, string studyyear, string name, string lastname)
+    public Student(Guid id, string studyyear, string name, string lastname)
     {
         Id = id;
         StudyYear = studyyear;
