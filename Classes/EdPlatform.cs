@@ -1,38 +1,41 @@
-﻿using ThirdTeam_Study.Managers;
+﻿using System.Diagnostics.Metrics;
+using ThirdTeam_Study.Enums;
+using ThirdTeam_Study.Managers;
+
 
 namespace ThirdTeam_Study
 {
-    internal class EdPlatform
+    public class EdPlatform
     {
-        public EdPlatform(string language, string country)
-        {
-            PlatformProperties = new Properties(language, country);
-        }
-
         public const string URL = "zttps://HillelEdPlatform.com";
 
-        public readonly string Name = "HillelEdPlatform";
+        public readonly string ServiceName = "Hillel Education Platform Support Service";
 
-        public int MaxStudentsCount { get; set; } //Maximum number of students at one meeting
+        public readonly string Name = "HillelEdPlatform";
+        public readonly string ServiceEmail = "hillelsupprot@zmail.com";
+        public readonly string ServicePhone = "+40857295375";
+        public required TutorList Tutors { get; set; }
+        public required StudentList Students { get; set; }
+        public EdPlatform() 
+        {
+            PlatformProperties = new Properties("en", Themes.Light);
+        }
+        public EdPlatform(string language, Themes theme)
+        {
+            PlatformProperties = new Properties(language, theme);
+        }
 
         public Properties PlatformProperties { get; }
         
-        public int ThrowConnectionError()
-        {
-            // Some logic, that controls properties.Language state
-            OutputManager.Write("Connection Error!");
-            return 400;
-        }
-
         public class Properties
         {
-            public Properties(string language, string country)
+            public Properties(string language, Themes theme)
             {
                 Language = language;
-                Country = country;
+                PlatformTheme = theme;
             }
-            public string Language { get; }
-            public string Country { get; }
+            public string Language { get; set; }
+            public Themes PlatformTheme { get; set; }
         }
     }
 
