@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using ThirdTeam_Study;
 
 public class Student
 {
@@ -7,6 +8,7 @@ public class Student
 	public const string University = "Hogwarts";
 
     public int Id { get; }
+    public HomeWork Homework { get; set; }
 	public required string Name { get; set; }
 	public required string LastName { get; set; }
 	
