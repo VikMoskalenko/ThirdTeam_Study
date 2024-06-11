@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ThirdTeam_Study
 {
-    public class TutorList
+   /* public class TutorList
     {
         private List<Tutor> Tutors = new List<Tutor>();
 
@@ -55,5 +55,5 @@ namespace ThirdTeam_Study
         {
             return Tutors;
         }
-    }
+    }*/
 }

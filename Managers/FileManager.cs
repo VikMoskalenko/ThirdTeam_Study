@@ -2,10 +2,15 @@
 {
     public class FileManager 
     {
-        public string FilePath { get; }
+        public required string FilePath { get; set; } // "/Users/volodimir/ThirdTeam_Study/Files/Tutor.json"
         public readonly JsonSerializerSettings settings;
-        
-        public FileManager(string path = "/Users/volodimir/ThirdTeam_Study/Files/Tutor.json")
+
+        public FileManager ()
+        {
+
+        }
+// set required attribute
+        public FileManager(string path)
         {
             FilePath = path;
             settings = new()
@@ -59,7 +64,7 @@
             try
             {              
                 string json_str = File.ReadAllText(FilePath);               
-                tutors = JsonConvert.DeserializeObject<List<Tutor>>(json_str);//не работает десериализация
+                tutors = JsonConvert.DeserializeObject<List<Tutor>>(json_str);
                 return tutors;
                
             }
