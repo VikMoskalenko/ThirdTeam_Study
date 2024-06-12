@@ -7,7 +7,7 @@ namespace ThirdTeam_Study
     {
         public Guid Id { get; set; }
 
-        public required string FirstName { get; set; } //change to FirtsName
+        public required string FirstName { get; set; }
 
         public required string LastName { get; set; }
 
@@ -24,7 +24,7 @@ namespace ThirdTeam_Study
 
         public override string ToString()
         {
-            return "[ ID ]: " + Id.ToString() + " [ FIRST NAME ]: " + FirstName + " [ LAST NAME ]: " + LastName + " [ BIRTHDAY ]: " + Birthday + " [ AGE ]: " + Age.ToString() + " [ SENIORITY ]: " + Seniority.ToString();
+            return "\n[ ID ]: " + Id.ToString() + "\n[ FIRST NAME ]: " + FirstName + "\n[ LAST NAME ]: " + LastName + "\n[ BIRTHDAY ]: " + Birthday.Day + "/" + Birthday.Month + "/"+ Birthday.Year + "\n[ AGE ]: " + Age.ToString() + "\n[ SENIORITY ]: " + Seniority.ToString();
         }
 
     }

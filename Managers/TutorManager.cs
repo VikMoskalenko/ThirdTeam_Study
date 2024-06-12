@@ -12,7 +12,7 @@ namespace ThirdTeam_Study
 
         public TutorManager()
         {
-            FileManager = new();
+            FileManager = new("Tutor.json");
         }
 
         public Tutor CreateTutor(string first_name, string last_name, DateOnly b_day)
@@ -106,6 +106,11 @@ namespace ThirdTeam_Study
             FileManager.WriteToFile(tutor_list);
 
             return true;
+        }
+
+        public List<Tutor>? GetAllTutors()
+        {
+            return FileManager.ReadAllFromFile();
         }
 
     }

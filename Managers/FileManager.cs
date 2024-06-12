@@ -1,18 +1,18 @@
-﻿namespace ThirdTeam_Study.Managers
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace ThirdTeam_Study.Managers
 {
-    public class FileManager 
+    public class FileManager
     {
-        public required string FilePath { get; set; } // "/Users/volodimir/ThirdTeam_Study/Files/Tutor.json"
+        public string FilePath { get; }
         public readonly JsonSerializerSettings settings;
 
-        public FileManager ()
+        public FileManager(string file_name)
         {
-
-        }
-// set required attribute
-        public FileManager(string path)
-        {
-            FilePath = path;
+            FilePath = Directory.GetCurrentDirectory().Replace("/bin/Debug/net8.0", "/Files/" + file_name);
             settings = new()
             {
                 Formatting = Formatting.Indented,
@@ -22,21 +22,26 @@
 
         public bool WriteToFile(Tutor obj)
         {
-            if (obj == null) throw new NullReferenceException();
+            ArgumentNullException.ThrowIfNull(obj);
+
             try
             {            
                 string json_str = JsonConvert.SerializeObject(obj,settings);
                 if (!File.Exists(FilePath)) File.Create(FilePath).Close();
                 File.WriteAllText(FilePath, ToParceJSON(json_str));
-                return true;
-                
+                return true;                
             }
-            catch (Exception ex) { throw new Exception("File error", ex); }      
+            catch (JsonSerializationException ex) { throw new JsonSerializationException("Serialization / Deserialization error! Check fixing info: " + ex.HelpLink); }
+            catch (FileLoadException ex) { throw new FileLoadException("File cannot be loaded! Check fixing info: " + ex.HelpLink); }
+            catch (Exception ex) { throw new Exception("Error! Check fixing info: " + ex.HelpLink); }
+
         }
 
         public bool WriteToFile(List<Tutor> list)
         {
-            if (list.Count == 0) return true;
+            ArgumentNullException.ThrowIfNull(list);
+ 
+            if (list.Count == 0) return false;
             try
             {
                 List<string> json_list = new();
@@ -49,10 +54,13 @@
                     File.WriteAllText(FilePath, ToParceJSON(json));
                 return true;
             }
-            catch (Exception) { return false; }
+            catch (JsonSerializationException ex) { throw new JsonSerializationException("Serialization / Deserialization error! Check fixing info: " + ex.HelpLink); }
+            catch (FileLoadException ex) { throw new FileLoadException("File cannot be loaded! Check fixing info: " + ex.HelpLink); }
+            catch (Exception ex) { throw new Exception("Error! Check fixing info: " + ex.HelpLink); }
+
         }
 
-        public List<Tutor> ReadAllFromFile()
+        public List<Tutor>? ReadAllFromFile()
         {
             List<Tutor> tutors = new();
             if (!File.Exists(FilePath))
@@ -63,12 +71,15 @@
               
             try
             {              
-                string json_str = File.ReadAllText(FilePath);               
+                string json_str = File.ReadAllText(FilePath);             
                 tutors = JsonConvert.DeserializeObject<List<Tutor>>(json_str);
                 return tutors;
                
             }
-            catch (Exception ex) { return tutors; }
+            catch (JsonSerializationException ex) { throw new JsonSerializationException("Serialization / Deserialization error! Check fixing info: " + ex.HelpLink); }
+            catch (FileLoadException ex) { throw new FileLoadException("File cannot be loaded! Check fixing info: " + ex.HelpLink); }
+            catch (Exception ex) { throw new Exception("Error! Check fixing info: " + ex.HelpLink); }
+
         }
 
         public bool ClearFile()
@@ -78,7 +89,7 @@
                 File.Delete(FilePath);
                 return true;
             }
-            catch (Exception) { return false; }
+            catch (FileNotFoundException ex) { throw new FileNotFoundException("File is not finded! Check fixing info: " + ex.HelpLink); }
         }
 
         protected string ToParceJSON(string json)

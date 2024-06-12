@@ -7,12 +7,15 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            TutorManager tutorManager = new();
-            var tutor = tutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
-            var tutorList = new TutorList();
-            tutorList.AddTutor(tutor);
-            tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
-            var studentList = new StudentList();
+
+            TutorManager tutorManager = new TutorManager();
+            Console.WriteLine(tutorManager.CreateTutor("Ірина", "Щука", new DateOnly(2004, 11, 01)));
+            Console.WriteLine(tutorManager.CreateTutor("Марія", "Кущ", new DateOnly(2000, 10, 22)));
+            Console.WriteLine(tutorManager.CreateTutor("Василь", "Шевченко", new DateOnly(2006, 06, 01)));
+            Console.WriteLine(tutorManager.CreateTutor("Володимир", "Мунтян", new DateOnly(1999, 12, 11)));
+            Console.WriteLine(tutorManager.CreateTutor("Сань", "Ху-сінь", new DateOnly(1997, 08, 01)));
+
+            /*var studentList = new StudentList();
             studentList.AddStudent(1234567, "2016", "José", "Martínez");
             studentList.AddStudent(1234568, "2017", "María", "García");
             studentList.AddStudent(1234569, "2016", "Antonio", "López");
@@ -25,7 +28,7 @@ namespace ThirdTeam_Study
             studentList.AddStudent(1234576, "2017", "Laura", "Torres");
             var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", studentList)
             {
-                Tutor = tutor,
+                Tutor = tutorManager.CreateTutor("Вікторія", "Вакарчук", new DateOnly(2002, 08, 08)),
                 LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
             };
 
@@ -37,7 +40,7 @@ namespace ThirdTeam_Study
             var customerService = new CustomerService("nostupidquestion@study.md")
             {
                 Students = studentList,
-                Tutors = tutorList,
+                Tutors = tutorManager.GetAllTutors(),
                 ServicePhone = "937-99-92"
             };
 
@@ -63,7 +66,7 @@ namespace ThirdTeam_Study
             Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
             Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
-
+            */
         }
         public static void UserInput(string Message, Action<string> setInput)
         {

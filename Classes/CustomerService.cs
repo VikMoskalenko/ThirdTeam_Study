@@ -9,7 +9,7 @@ namespace ThirdTeam_Study
     {
         public const string ServiceName = "Hillel Education Platform Support Service";
         public readonly string ServiceEmail;
-        public required TutorList Tutors { get; set; }
+        public required List<Tutor> Tutors { get; set; }
         public required StudentList Students { get; set; }
         public string? ServicePhone { get; set; }
 
