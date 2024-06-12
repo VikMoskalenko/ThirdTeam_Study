@@ -1,7 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ThirdTeam_Study.Managers
 {
@@ -37,7 +35,7 @@ namespace ThirdTeam_Study.Managers
 
         }
 
-        public bool WriteToFile(List<Tutor> list)
+        public bool WriteToFile(List<Tutor>? list)
         {
             ArgumentNullException.ThrowIfNull(list);
  
@@ -62,7 +60,7 @@ namespace ThirdTeam_Study.Managers
 
         public List<Tutor>? ReadAllFromFile()
         {
-            List<Tutor> tutors = new();
+            List<Tutor>? tutors = new();
             if (!File.Exists(FilePath))
             {
                 File.Create(FilePath).Close();

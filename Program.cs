@@ -77,7 +77,7 @@ namespace ThirdTeam_Study
                 try
                 {
                     Console.WriteLine(Message);
-                    string input = Console.ReadLine();
+                    string? input = Console.ReadLine();
                     if (input != null)
                     {
                         setInput(input);

@@ -15,7 +15,7 @@ namespace ThirdTeam_Study
 
         public int Age { get; set; }
 
-        public int Seniority { get; set; }
+        public int Seniority { get; set; } 
 
         public Tutor()
         {
