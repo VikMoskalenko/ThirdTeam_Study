@@ -11,7 +11,6 @@
   <ItemGroup>
     <None Remove="Enums\" />
     <None Remove="Extentions\" />
-    <None Remove="Records\" />
     <None Remove="Classes\" />
     <None Remove="Managers\" />
     <None Remove="Interfaces\" />
@@ -20,7 +19,6 @@
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="Extentions\" />
-    <Folder Include="Records\" />
     <Folder Include="Classes\" />
     <Folder Include="Managers\" />
     <Folder Include="Interfaces\" />
