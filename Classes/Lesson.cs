@@ -52,15 +52,7 @@ namespace ThirdTeam_Study
         }
         public void LessonInfo()
         {
-<<<<<<< HEAD
             OutputManager.Write($"Lesson {LessonType} with {Teacher.FirstName} {Teacher.LastName}");
-=======
-<<<<<<< HEAD
-            Console.WriteLine($"Lesson {LessonType} with {Tutor.FirstName} {Tutor.LastName}");
-=======
-            OutputManager.Write($"Lesson {LessonType} with {Tutor.Info.First_name} {Tutor.Info.Last_name}");
->>>>>>> 4fd579358fc8ecf7dc5879dad1b6608758383345
->>>>>>> TutorManagerBranch
             LessonStartAt();
             OutputManager.Write($"Theme: {LessonTheme} ");
         }

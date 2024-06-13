@@ -1,4 +1,6 @@
-﻿using ThirdTeam_Study;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using ThirdTeam_Study;
 
 public class Student
 {
