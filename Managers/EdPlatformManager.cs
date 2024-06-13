@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThirdTeam_Study.CustomExceptions;
+using ThirdTeam_Study.Records;
 
 namespace ThirdTeam_Study.Managers
 {
@@ -33,9 +34,9 @@ namespace ThirdTeam_Study.Managers
 
         public void GetSupportInfo()
         {
-            OutputManager.Write($"Service: {EdPlatformInstance.ServiceName}");
-            OutputManager.Write($"Service Email: {EdPlatformInstance.ServiceEmail}");
-            OutputManager.Write($"Service Phone Number: {EdPlatformInstance.ServicePhone}");
+            OutputManager.Write($"Service: {SupportInfo.ServiceName}");
+            OutputManager.Write($"Service Email: {SupportInfo.ServiceEmail}");
+            OutputManager.Write($"Service Phone Number: {SupportInfo.ServicePhone}");
         }
         public static int ThrowConnectionException()
         {

@@ -33,4 +33,3 @@ public static class StudentExtensionsHW4
 		return $"{student.Name}, {student.DOB}, {student.LastName}";
 	}
 }
-public record StudentRecord(string Id, string Name, string LastName, string StudyYear);

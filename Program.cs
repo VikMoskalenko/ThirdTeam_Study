@@ -27,17 +27,6 @@ namespace ThirdTeam_Study
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2016", "Francisco", "Ramírez") { Name = "Francisco", LastName = "Ramírez" });
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2017", "Laura", "Torres") { Name = "Laura", LastName = "Torres" });
 
-
-            /* studentList.AddStudent(1234567, "2016", "José", "Martínez");
-            studentList.AddStudent(1234568, "2017", "María", "García");
-            studentList.AddStudent(1234569, "2016", "Antonio", "López");
-            studentList.AddStudent(1234570, "2016", "Carmen", "Hernández");
-            studentList.AddStudent(1234571, "2017", "Luis", "González");
-            studentList.AddStudent(1234572, "2017", "Ana", "Rodríguez");
-            studentList.AddStudent(1234573, "2016", "Manuel", "Pérez");
-            studentList.AddStudent(1234574, "2017", "Isabel", "Sánchez");
-            studentList.AddStudent(1234575, "2016", "Francisco", "Ramírez");
-            studentList.AddStudent(1234576, "2017", "Laura", "Torres"); */
             var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", edPlatform.Students)
             {
                 Tutor = tutor,

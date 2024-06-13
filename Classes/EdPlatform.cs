@@ -10,12 +10,8 @@ namespace ThirdTeam_Study
         private static EdPlatform edPlatform = null;
 
         public const string URL = "zttps://HillelEdPlatform.com";
-
-        public readonly string ServiceName = "Hillel Education Platform Support Service";
-
         public readonly string Name = "HillelEdPlatform";
-        public readonly string ServiceEmail = "hillelsupprot@zmail.com";
-        public readonly string ServicePhone = "+40857295375";
+        
 
         protected EdPlatform()
         {
@@ -37,7 +33,7 @@ namespace ThirdTeam_Study
 
         public static EdPlatform Initialize(string language, Themes theme)
         {
-            if(edPlatform == null)
+            if (edPlatform == null)
             {
                 edPlatform = new EdPlatform(language, theme);
             }
@@ -61,5 +57,4 @@ namespace ThirdTeam_Study
             public Themes PlatformTheme { get; set; }
         }
     }
-
 }
