@@ -2,9 +2,9 @@
 
 namespace ThirdTeam_Study
 {
-    public class TutorManager //Добавить валидацию ФИО регекс + добавить список курсов в Тьютор
+    public class TutorManager // добавить список курсов в Тьютор
     {
-        public FileManager FileManager { get; }
+        public FileManager<Tutor> FileManager { get; }
 
         public TutorManager()
         {
