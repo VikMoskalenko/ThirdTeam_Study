@@ -11,10 +11,10 @@ namespace ThirdTeam_Study
 
             var edPlatformManager = new EdPlatformManager();
             var edPlatform = edPlatformManager.EdPlatformInstance;
-
-            var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            TutorManager tutor_manager = new();
+            var tutor = tutor_manager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
             edPlatformManager.SignUp(tutor);
-            var tutor2 = TutorManager.CreateTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
+            var tutor2 = tutor_manager.CreateTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
             edPlatformManager.SignUp(tutor2);
 
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2016", "José", "Martínez") { Name = "José", LastName = "Martínez" });
@@ -30,7 +30,7 @@ namespace ThirdTeam_Study
 
             var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", edPlatform.Students)
             {
-                Tutor = tutor,
+                Teacher = tutor,
                 LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
             };
 

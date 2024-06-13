@@ -14,5 +14,11 @@
     <None Remove="Records\" />
     <None Remove="Classes\" />
     <None Remove="Managers\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Files\" />
   </ItemGroup>
 </Project>
