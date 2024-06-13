@@ -3,7 +3,11 @@ using Newtonsoft.Json.Serialization;
 
 namespace ThirdTeam_Study.Managers
 {
+<<<<<<< HEAD
     public class FileManager<T>
+=======
+    public class FileManager <T>
+>>>>>>> TutorManagerBranch
     {
         public string FilePath { get; }
         public readonly JsonSerializerSettings settings;
@@ -23,11 +27,19 @@ namespace ThirdTeam_Study.Managers
             ArgumentNullException.ThrowIfNull(obj);
 
             try
+<<<<<<< HEAD
             {
                 string json_str = JsonConvert.SerializeObject(obj, settings);
                 if (!File.Exists(FilePath)) File.Create(FilePath).Close();
                 File.WriteAllText(FilePath, ToParceJSON(json_str));
                 return true;
+=======
+            {            
+                string json_str = JsonConvert.SerializeObject(obj,settings);
+                if (!File.Exists(FilePath)) File.Create(FilePath).Close();
+                File.WriteAllText(FilePath, ToParceJSON(json_str));
+                return true;                
+>>>>>>> TutorManagerBranch
             }
             catch (JsonSerializationException ex) { throw new JsonSerializationException("Serialization / Deserialization error! Check fixing info: " + ex.HelpLink); }
             catch (FileLoadException ex) { throw new FileLoadException("File cannot be loaded! Check fixing info: " + ex.HelpLink); }
@@ -38,7 +50,11 @@ namespace ThirdTeam_Study.Managers
         public bool WriteToFile(List<T>? list)
         {
             ArgumentNullException.ThrowIfNull(list);
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> TutorManagerBranch
             if (list.Count == 0) return false;
             try
             {
@@ -66,6 +82,7 @@ namespace ThirdTeam_Study.Managers
                 File.Create(FilePath).Close();
                 return list;
             }
+<<<<<<< HEAD
 
             try
             {
@@ -73,6 +90,15 @@ namespace ThirdTeam_Study.Managers
                 list = JsonConvert.DeserializeObject<List<T>>(json_str);
                 return list;
 
+=======
+              
+            try
+            {              
+                string json_str = File.ReadAllText(FilePath);
+                list = JsonConvert.DeserializeObject<List<T>>(json_str);
+                return list;
+               
+>>>>>>> TutorManagerBranch
             }
             catch (JsonSerializationException ex) { throw new JsonSerializationException("Serialization / Deserialization error! Check fixing info: " + ex.HelpLink); }
             catch (FileLoadException ex) { throw new FileLoadException("File cannot be loaded! Check fixing info: " + ex.HelpLink); }
@@ -93,7 +119,11 @@ namespace ThirdTeam_Study.Managers
         protected string ToParceJSON(string json)
         {
             string data = File.ReadAllText(FilePath);
+<<<<<<< HEAD
             return (data.Length == 0) ? "[" + json + "]" : data.Remove(data.Length - 1) + "," + json + "]";
+=======
+            return (data.Length == 0) ? "[" + json + "]" : data.Remove(data.Length - 1) + "," + json + "]";     
+>>>>>>> TutorManagerBranch
         }
     }
 }
