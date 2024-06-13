@@ -12,9 +12,9 @@ namespace ThirdTeam_Study
             var edPlatformManager = new EdPlatformManager();
             var edPlatform = edPlatformManager.EdPlatformInstance;
             TutorManager tutor_manager = new();
-            var tutor = tutor_manager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            var tutor = tutor_manager.CreateTutor("Мікола", "Посіпайло", new DateOnly(1965, 4, 1));
             edPlatformManager.SignUp(tutor);
-            var tutor2 = tutor_manager.CreateTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
+            var tutor2 = tutor_manager.CreateTutor("Павло", "Лазаренко", new DateOnly(1950, 4, 1));
             edPlatformManager.SignUp(tutor2);
 
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2016", "José", "Martínez") { Name = "José", LastName = "Martínez" });
