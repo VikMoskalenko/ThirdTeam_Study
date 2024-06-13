@@ -1,0 +1,43 @@
+[{
+  "id": "c57e89c1-4717-486a-a983-5e47896ca35f",
+  "firstName": "Володимир",
+  "lastName": "Мунтян",
+  "birthday": "2001-12-13",
+  "age": 22,
+  "seniority": 0
+},{
+  "id": "e53c30b7-3bbc-4b4b-bfd7-63323f741b65",
+  "firstName": "Марія",
+  "lastName": "Яремчук",
+  "birthday": "1997-09-07",
+  "age": 26,
+  "seniority": 0
+},{
+  "id": "b0a43d56-0596-4520-ad22-af6de835a0c9",
+  "firstName": "Олег",
+  "lastName": "Омельчук",
+  "birthday": "2000-08-08",
+  "age": 23,
+  "seniority": 0
+},{
+  "id": "0e3f65ea-8edf-4422-9edf-76fb6e0056fd",
+  "firstName": "Каріна",
+  "lastName": "Маліна",
+  "birthday": "1999-10-11",
+  "age": 24,
+  "seniority": 0
+},{
+  "id": "b39d31fe-248f-418c-aca8-241adb807f01",
+  "firstName": "Василь",
+  "lastName": "Вірастюк",
+  "birthday": "2001-01-07",
+  "age": 23,
+  "seniority": 0
+},{
+  "id": "4330af25-d197-4d39-9ef7-01918d804653",
+  "firstName": "Микола",
+  "lastName": "Сидоренко",
+  "birthday": "2000-05-05",
+  "age": 24,
+  "seniority": 0
+}]
