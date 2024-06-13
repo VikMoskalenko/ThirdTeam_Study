@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThirdTeam_Study.Managers;
 
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.ListTypes
 {
     public class StudentList : IEnumerable<Student>
     {
@@ -30,7 +30,7 @@ namespace ThirdTeam_Study
 
         public Student? Find(Predicate<Student> match)
         {
-            if(match != null)
+            if (match != null)
             {
                 for (int i = 0; i < _students.Count; i++)
                 {
@@ -40,7 +40,7 @@ namespace ThirdTeam_Study
                     }
                 }
                 return default;
-            } 
+            }
             else
             {
                 return null;

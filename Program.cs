@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using ThirdTeam_Study.Managers;
+using ThirdTeam_Study.ListTypes;
 
 namespace ThirdTeam_Study
 {
@@ -12,9 +13,9 @@ namespace ThirdTeam_Study
             var edPlatform = edPlatformManager.EdPlatformInstance;
 
             var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
-            var tutorList = new TutorList();
-            tutorList.AddTutor(tutor);
-            tutorList.AddTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
+            edPlatformManager.SignUp(tutor);
+            var tutor2 = TutorManager.CreateTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
+            edPlatformManager.SignUp(tutor2);
 
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2016", "José", "Martínez") { Name = "José", LastName = "Martínez" });
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2017", "María", "García") { Name = "María", LastName = "García" });
@@ -66,29 +67,7 @@ namespace ThirdTeam_Study
             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
 
         }
-        public static void UserInput(string Message, Action<string> setInput)
-        {
-            bool enterError;
-            do
-            {
-                enterError = false;
-                try
-                {
-                    Console.WriteLine(Message);
-                    string input = Console.ReadLine();
-                    if (input != null)
-                    {
-                        setInput(input);
-                    }
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    enterError = true;
-
-                }
-            } while (enterError);
-        }
+        
 
     }
 }

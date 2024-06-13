@@ -38,6 +38,9 @@ namespace ThirdTeam_Study.Managers
             OutputManager.Write($"Service Email: {SupportInfo.ServiceEmail}");
             OutputManager.Write($"Service Phone Number: {SupportInfo.ServicePhone}");
         }
+
+        //TODO
+        //CreateCourse
         public static int ThrowConnectionException()
         {
             var connectionException = new ConnectionException();

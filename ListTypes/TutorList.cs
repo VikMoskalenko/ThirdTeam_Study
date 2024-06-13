@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThirdTeam_Study.Managers;
 
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.ListTypes
 {
     public class TutorList : IEnumerable<Tutor>
     {
