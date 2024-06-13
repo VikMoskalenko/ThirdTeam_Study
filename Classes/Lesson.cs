@@ -6,6 +6,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ThirdTeam_Study.ListTypes;
+using ThirdTeam_Study.Managers;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace ThirdTeam_Study
@@ -18,7 +20,7 @@ namespace ThirdTeam_Study
         public required Tutor Tutor { get; set; }
         public string LessonTheme { get; set; }
         public required DateTime LessonStart { get; set; }
-        private Dictionary<int, int> LessonScore;
+        private Dictionary<Guid, int> LessonScore;
         public Lesson(string lessonType, string lessonTheme, StudentList students)
         {
             Students = CheckCapacity(students);
@@ -40,23 +42,27 @@ namespace ThirdTeam_Study
         {
             if (DateTime.Now > LessonStart)
             {
-                Console.WriteLine($"Lesson was: {LessonStart} , You late!");
+                OutputManager.Write($"Lesson was: {LessonStart} , You late!");
             }
             else
             {
-                Console.WriteLine($"Lesson start at: {LessonStart}");
+                OutputManager.Write($"Lesson start at: {LessonStart}");
             }
 
         }
         public void LessonInfo()
         {
+<<<<<<< HEAD
             Console.WriteLine($"Lesson {LessonType} with {Tutor.FirstName} {Tutor.LastName}");
+=======
+            OutputManager.Write($"Lesson {LessonType} with {Tutor.Info.First_name} {Tutor.Info.Last_name}");
+>>>>>>> 4fd579358fc8ecf7dc5879dad1b6608758383345
             LessonStartAt();
-            Console.WriteLine($"Theme: {LessonTheme} ");
+            OutputManager.Write($"Theme: {LessonTheme} ");
         }
-        private Dictionary<int, int> LessonScoreInit()
+        private Dictionary<Guid, int> LessonScoreInit()
         {
-            var lessonScore = new Dictionary<int, int>();
+            var lessonScore = new Dictionary<Guid, int>();
 
             foreach (Student student in Students)
             {
@@ -76,7 +82,7 @@ namespace ThirdTeam_Study
             return scoreInt;
         }
 
-        public void SetUpdateScore(int id, string score)
+        public void SetUpdateScore(Guid id, string score)
         {
 
             string? firstName = null;
@@ -104,7 +110,7 @@ namespace ThirdTeam_Study
 
         public void SetUpdateScore(string firstName, string lastName, string score)
         {
-            int id = 0 ;
+            Guid id = Guid.Empty;
 
             foreach (Student student in Students)
             {
@@ -114,7 +120,7 @@ namespace ThirdTeam_Study
                     break;
                 }
             }
-            if (id != 0)
+            if (id != Guid.Empty)
             {
                 LessonScore[id] = CorrectScore(score);
                 Console.WriteLine($"Score for student: {firstName} {lastName} : {score}");

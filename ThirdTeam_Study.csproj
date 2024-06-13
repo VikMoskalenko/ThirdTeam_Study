@@ -16,6 +16,7 @@
     <None Remove="Interfaces\" />
     <None Remove="Files\" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="Extentions\" />
@@ -27,4 +28,6 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
+=======
+>>>>>>> 4fd579358fc8ecf7dc5879dad1b6608758383345
 </Project>
