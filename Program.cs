@@ -35,10 +35,10 @@ namespace ThirdTeam_Study
             };
 
             lesson.LessonInfo();
-            UserInput("Enter score", input => 
+            InputManager.UserInput("Enter score", input => 
                 lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Manuel")?.Id ?? Guid.Empty, input)); // Id is not null, cause students was created with hardcode!
-            UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
-            UserInput("Enter score", input => 
+            InputManager.UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
+            InputManager.UserInput("Enter score", input => 
                 lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Elisa")?.Id ?? Guid.Empty, input));
             edPlatformManager.RemoveStudent(edPlatform.Students.Find(s => s.Name == "Manuel") ?? new Student(Guid.Empty, "", "", "") { Name = "", LastName = ""});
             
