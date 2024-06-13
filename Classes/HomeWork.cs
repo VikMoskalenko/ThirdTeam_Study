@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using ThirdTeam_Study.Managers;
 
 namespace ThirdTeam_Study
 {
@@ -47,23 +48,23 @@ namespace ThirdTeam_Study
         public void SubmitHW() {
             while (true)
             {
-                Console.WriteLine("Enter path to your home work file:");
+                OutputManager.Write("Enter path to your home work file:");
                 string sourceFilePath = Console.ReadLine() ?? string.Empty;
 
                 if (String.IsNullOrEmpty(sourceFilePath))
                 {
-                    Console.WriteLine("You need to paste path to home work file");
+                    OutputManager.Write("You need to paste path to home work file");
                 }
 
                 try
                 {
                     UploadHomeWork(sourceFilePath ?? string.Empty);
-                    Console.WriteLine("File saved successfully.");
+                    OutputManager.Write("File saved successfully.");
                     break;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error occur: {ex.Message}");
+                    OutputManager.Write($"Error occur: {ex.Message}");
                 }
             }
         }
@@ -72,17 +73,17 @@ namespace ThirdTeam_Study
         {
             while (true)
             {
-                Console.WriteLine("enter homework grade");
+                OutputManager.Write("enter homework grade");
                 string value = Console.ReadLine() ?? string.Empty;
 
                 if (!ushort.TryParse(value, out ushort result))
                 {
-                    Console.WriteLine("Wrong format. Please enter number between 1 and 100");
+                    OutputManager.Write("Wrong format. Please enter number between 1 and 100");
                     continue;
                 }
                 else if (result < 0 || result > 100)
                 {
-                    Console.WriteLine("Grade should be between 1 and 100");
+                    OutputManager.Write("Grade should be between 1 and 100");
                     continue;
                 }
                 else
@@ -97,12 +98,12 @@ namespace ThirdTeam_Study
         {
             while (true)
             {
-                Console.WriteLine("Add some comment or leave it empty:");
+                OutputManager.Write("Add some comment or leave it empty:");
                 string comment = Console.ReadLine() ?? string.Empty;
 
                 if (!Regex.IsMatch(comment, @"[A-Za-z]?"))
                 {
-                    Console.WriteLine("Only letters allowed");
+                    OutputManager.Write("Only letters allowed");
                 }
                 else
                 {

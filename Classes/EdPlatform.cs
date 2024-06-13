@@ -1,60 +1,61 @@
-﻿namespace ThirdTeam_Study
+﻿using System.Diagnostics.Metrics;
+using ThirdTeam_Study.Enums;
+using ThirdTeam_Study.ListTypes;
+using ThirdTeam_Study.Managers;
+
+
+namespace ThirdTeam_Study
 {
-    internal class EdPlatform
+    public class EdPlatform
     {
-        public EdPlatform(string language, string country)
-        {
-            PlatformProperties = new Properties(language, country);
-        }
+        private static EdPlatform edPlatform = null;
 
         public const string URL = "zttps://HillelEdPlatform.com";
-
         public readonly string Name = "HillelEdPlatform";
+        
 
-        public int MaxStudentsCount { get; set; } //Maximum number of students at one meeting
+        protected EdPlatform()
+        {
+            PlatformProperties = new Properties("en", Themes.Light);
+        }
+        protected EdPlatform(string language, Themes theme)
+        {
+            PlatformProperties = new Properties(language, theme);
+        }
+
+        public static EdPlatform Initialize()
+        {
+            if (edPlatform == null)
+            {
+                edPlatform = new EdPlatform();
+            }
+            return edPlatform;
+        }
+
+        public static EdPlatform Initialize(string language, Themes theme)
+        {
+            if (edPlatform == null)
+            {
+                edPlatform = new EdPlatform(language, theme);
+            }
+            return edPlatform;
+        }
+
+
+        public TutorList Tutors { get; set; } = new TutorList();
+        public StudentList Students { get; set; } = new StudentList();
 
         public Properties PlatformProperties { get; }
-        
-        public void LaunchMeeting(int currentStudentsCount)
-        {
-            if(currentStudentsCount <= MaxStudentsCount)
-            {
-                Console.WriteLine("Launch meeting");
-            }
-            else
-            {
-                Console.WriteLine("Limit of students reached.");
-            }
-        }
-        public void LaunchMeeting()
-        {
-            Console.WriteLine("Launch meeting");
-        }
-        
-        public void ConnectToMeeting()
-        {
-            Console.WriteLine("Connect to meeting");
-        }
-
-        public int ThrowConnectionError()
-        {
-            // Some logic, that controls properties.Language state
-            Console.WriteLine("Connection Error!");
-            return 400;
-        }
-
-       
 
         public class Properties
         {
-            public Properties(string language, string country)
+            public Properties(string language, Themes theme)
             {
                 Language = language;
-                Country = country;
+                PlatformTheme = theme;
             }
-            public string Language { get; }
-            public string Country { get; }
+            public string Language { get; set; }
+            public Themes PlatformTheme { get; set; }
         }
     }
-
 }
