@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace ThirdTeam_Study.Managers
 {
-    public class FileManager
+    public class FileManager <T>
     {
         public string FilePath { get; }
         public readonly JsonSerializerSettings settings;
@@ -18,7 +18,7 @@ namespace ThirdTeam_Study.Managers
             };
         }
 
-        public bool WriteToFile(Tutor obj)
+        public bool WriteToFile(T obj)
         {
             ArgumentNullException.ThrowIfNull(obj);
 
@@ -35,7 +35,7 @@ namespace ThirdTeam_Study.Managers
 
         }
 
-        public bool WriteToFile(List<Tutor>? list)
+        public bool WriteToFile(List<T>? list)
         {
             ArgumentNullException.ThrowIfNull(list);
  
@@ -43,8 +43,8 @@ namespace ThirdTeam_Study.Managers
             try
             {
                 List<string> json_list = new();
-                foreach (Tutor tutor in list)
-                    json_list.Add(JsonConvert.SerializeObject(tutor, settings));
+                foreach (T obj in list)
+                    json_list.Add(JsonConvert.SerializeObject(obj, settings));
 
                 if (!File.Exists(FilePath)) File.Create(FilePath).Close();
 
@@ -58,20 +58,20 @@ namespace ThirdTeam_Study.Managers
 
         }
 
-        public List<Tutor>? ReadAllFromFile()
+        public List<T>? ReadAllFromFile()
         {
-            List<Tutor>? tutors = new();
+            List<T>? list = new();
             if (!File.Exists(FilePath))
             {
                 File.Create(FilePath).Close();
-                return tutors;
+                return list;
             }
               
             try
             {              
-                string json_str = File.ReadAllText(FilePath);             
-                tutors = JsonConvert.DeserializeObject<List<Tutor>>(json_str);
-                return tutors;
+                string json_str = File.ReadAllText(FilePath);
+                list = JsonConvert.DeserializeObject<List<T>>(json_str);
+                return list;
                
             }
             catch (JsonSerializationException ex) { throw new JsonSerializationException("Serialization / Deserialization error! Check fixing info: " + ex.HelpLink); }
