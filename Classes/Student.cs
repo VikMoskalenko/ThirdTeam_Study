@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using ThirdTeam_Study;
 
 public class Student
 {
 	public readonly string StudyYear;
 	public const string University = "Hogwarts";
 
-    public Guid Id { get; }
+  public Guid Id { get; }
+  public HomeWork Homework { get; set; }
+  
 	public required string Name { get; set; }
 	public required string LastName { get; set; }
 	
