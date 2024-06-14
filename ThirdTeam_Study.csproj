@@ -15,15 +15,7 @@
     <None Remove="Managers\" />
     <None Remove="Interfaces\" />
     <None Remove="Files\" />
-<<<<<<< HEAD
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Files\" />
-=======
->>>>>>> TutorManagerBranch
-  </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="Extentions\" />
@@ -35,6 +27,5 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
-=======
->>>>>>> 4fd579358fc8ecf7dc5879dad1b6608758383345
+
 </Project>
