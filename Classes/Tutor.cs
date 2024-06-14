@@ -20,17 +20,11 @@ namespace ThirdTeam_Study
         public Tutor()
         {
 
-<<<<<<< HEAD
         }
 
         public override string ToString()
         {
             return "\n[ ID ]: " + Id.ToString() + "\n[ FIRST NAME ]: " + FirstName + "\n[ LAST NAME ]: " + LastName + "\n[ BIRTHDAY ]: " + Birthday.Day + "/" + Birthday.Month + "/" + Birthday.Year + "\n[ AGE ]: " + Age.ToString() + "\n[ SENIORITY ]: " + Seniority.ToString();
-=======
-        public override string ToString()
-        {
-            return "\n[ ID ]: " + Id.ToString() + "\n[ FIRST NAME ]: " + FirstName + "\n[ LAST NAME ]: " + LastName + "\n[ BIRTHDAY ]: " + Birthday.Day + "/" + Birthday.Month + "/"+ Birthday.Year + "\n[ AGE ]: " + Age.ToString() + "\n[ SENIORITY ]: " + Seniority.ToString();
->>>>>>> TutorManagerBranch
         }
 
     }

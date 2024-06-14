@@ -15,11 +15,7 @@ namespace ThirdTeam_Study
         {
             if (b_day.ToCalculateAge() < 18) throw new ArgumentException("Tutor`s age cannot be less than 18 y.o.!");
 
-<<<<<<< HEAD
             Tutor tutor = new()
-=======
-            Tutor tutor = new ()
->>>>>>> TutorManagerBranch
             {
                 FirstName = first_name,
                 LastName = last_name,
@@ -93,11 +89,7 @@ namespace ThirdTeam_Study
         }
 
         public bool DeleteTutor(Guid id)
-<<<<<<< HEAD
         {
-=======
-        {  
->>>>>>> TutorManagerBranch
             if (GetTutorById(id) == null) return false;
 
             List<Tutor>? tutor_list = FileManager?.ReadAllFromFile();
@@ -105,11 +97,6 @@ namespace ThirdTeam_Study
             if (tutor_list?.Count == 0) return false;
 
             tutor_list?.RemoveAll(x => x.Id == id);
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> TutorManagerBranch
             FileManager?.ClearFile();
             FileManager?.WriteToFile(tutor_list);
 
