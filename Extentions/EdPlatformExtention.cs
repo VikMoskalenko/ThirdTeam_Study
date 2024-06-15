@@ -10,19 +10,13 @@ namespace ThirdTeam_Study.Extentions
 {
     public static class EdPlatformExtention
     {
-        public static StudentList GetAllStudents()
+        public static StudentList GetAllStudents(this EdPlatform edPlatform)
         {
-            var edPlatformManager = new EdPlatformManager();
-            var edPlatform = edPlatformManager.EdPlatformInstance;
-
             return edPlatform.Students;
         }
 
-        public static TutorList GetAllTutors()
+        public static TutorList GetAllTutors(this EdPlatform edPlatform)
         {
-            var edPlatformManager = new EdPlatformManager();
-            var edPlatform = edPlatformManager.EdPlatformInstance;
-
             return edPlatform.Tutors;
         }
     }
