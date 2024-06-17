@@ -10,7 +10,7 @@ namespace ThirdTeam_Study.Managers
 
         public FileManager(string file_name)
         {
-            FilePath = Directory.GetCurrentDirectory().Replace("/bin/Debug/net8.0", "/Files/" + file_name);
+            FilePath = Directory.GetCurrentDirectory().Replace("\\bin\\Debug\\net8.0", "\\Files\\" + file_name);
             settings = new()
             {
                 Formatting = Formatting.Indented,

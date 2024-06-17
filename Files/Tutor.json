@@ -40,4 +40,67 @@
   "birthday": "2000-05-05",
   "age": 24,
   "seniority": 0
+},{
+  "id": "bbf5220c-ae9e-43b7-85ca-709dc37999bc",
+  "firstName": "Володимир",
+  "lastName": "Мунтян",
+  "birthday": "2001-12-13",
+  "age": 22,
+  "seniority": 0
+},{
+  "id": "a6c02721-8157-4745-9016-36111763c12b",
+  "firstName": "Марія",
+  "lastName": "Яремчук",
+  "birthday": "1997-09-07",
+  "age": 26,
+  "seniority": 0
+},{
+  "id": "19fa5509-b7f6-433d-b1b0-dd718b2b66d7",
+  "firstName": "Олег",
+  "lastName": "Омельчук",
+  "birthday": "2000-08-08",
+  "age": 23,
+  "seniority": 0
+},{
+  "id": "1e3f34fb-ffb2-40ab-aa5b-b0518798ad16",
+  "firstName": "Каріна",
+  "lastName": "Маліна",
+  "birthday": "1999-10-11",
+  "age": 24,
+  "seniority": 0
+},{
+  "id": "8a574f01-d21d-4ba7-a410-82661d6944d4",
+  "firstName": "Василь",
+  "lastName": "Вірастюк",
+  "birthday": "2001-01-07",
+  "age": 23,
+  "seniority": 0
+},{
+  "id": "55ee71f6-311b-45d5-b613-72f2213bfdb1",
+  "firstName": "Микола",
+  "lastName": "Сидоренко",
+  "birthday": "2000-05-05",
+  "age": 24,
+  "seniority": 0
+},{
+  "id": "e17bfa24-2a24-4af9-aee7-0aa278413b5e",
+  "firstName": "Мікола",
+  "lastName": "Посіпайло",
+  "birthday": "1965-04-01",
+  "age": 59,
+  "seniority": 0
+},{
+  "id": "03e02641-3ba7-4e99-b370-28aa3249a859",
+  "firstName": "Павло",
+  "lastName": "Лазаренко",
+  "birthday": "2004-11-04",
+  "age": 19,
+  "seniority": 0
+},{
+  "id": "a90d6fc4-4226-4d49-be02-6eecb66e2422",
+  "firstName": "Вікторія",
+  "lastName": "Вакарчук",
+  "birthday": "2002-08-08",
+  "age": 21,
+  "seniority": 0
 }]

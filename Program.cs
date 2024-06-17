@@ -8,7 +8,8 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            TutorManager tutor_manager = new();
+            //TutorManager tutor_manager = new();
+            var tutor_manager = new TutorManager();
 
             Console.WriteLine(tutor_manager.CreateTutor("Володимир", "Мунтян", new DateOnly(2001, 12, 13)));
             Console.WriteLine(tutor_manager.CreateTutor("Марія", "Яремчук", new DateOnly(1997, 9, 7)));
@@ -17,18 +18,18 @@ namespace ThirdTeam_Study
             Console.WriteLine(tutor_manager.CreateTutor("Василь", "Вірастюк", new DateOnly(2001, 1, 7)));
             Console.WriteLine(tutor_manager.CreateTutor("Микола", "Сидоренко", new DateOnly(2000, 5, 5)));
 
-            var studentList = new StudentList();
-            studentList.AddStudent(1234567, "2016", "José", "Martínez");
-            studentList.AddStudent(1234568, "2017", "María", "García");
-            studentList.AddStudent(1234569, "2016", "Antonio", "López");
-            studentList.AddStudent(1234570, "2016", "Carmen", "Hernández");
-            studentList.AddStudent(1234571, "2017", "Luis", "González");
-            studentList.AddStudent(1234572, "2017", "Ana", "Rodríguez");
-            studentList.AddStudent(1234573, "2016", "Manuel", "Pérez");
-            studentList.AddStudent(1234574, "2017", "Isabel", "Sánchez");
-            studentList.AddStudent(1234575, "2016", "Francisco", "Ramírez");
-            studentList.AddStudent(1234576, "2017", "Laura", "Torres");
-            var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", studentList)
+            //var studentList = new StudentList();
+            //studentList.AddStudent(1234567, "2016", "José", "Martínez");
+            //studentList.AddStudent(1234568, "2017", "María", "García");
+            //studentList.AddStudent(1234569, "2016", "Antonio", "López");
+            //studentList.AddStudent(1234570, "2016", "Carmen", "Hernández");
+            //studentList.AddStudent(1234571, "2017", "Luis", "González");
+            //studentList.AddStudent(1234572, "2017", "Ana", "Rodríguez");
+            //studentList.AddStudent(1234573, "2016", "Manuel", "Pérez");
+            //studentList.AddStudent(1234574, "2017", "Isabel", "Sánchez");
+            //studentList.AddStudent(1234575, "2016", "Francisco", "Ramírez");
+            //studentList.AddStudent(1234576, "2017", "Laura", "Torres");
+            //var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", studentList)
 
             var edPlatformManager = new EdPlatformManager();
             var edPlatform = edPlatformManager.EdPlatformInstance;
@@ -40,9 +41,9 @@ namespace ThirdTeam_Study
              var tutor = tutor_manager.CreateTutor("Мікола", "Посіпайло", new DateOnly(1965, 4, 1));
              var tutor2 = tutor_manager.CreateTutor("Павло", "Лазаренко", new DateOnly(2004, 11, 4));
 
-            var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            //var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
             edPlatformManager.SignUp(tutor);
-            var tutor2 = TutorManager.CreateTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
+            //var tutor2 = TutorManager.CreateTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
             edPlatformManager.SignUp(tutor2);
 
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2016", "José", "Martínez") { Name = "José", LastName = "Martínez" });
@@ -58,32 +59,24 @@ namespace ThirdTeam_Study
 
             var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", edPlatform.Students)
             {
-                Tutor = tutorManager.CreateTutor("Вікторія", "Вакарчук", new DateOnly(2002, 08, 08)),
+                Teacher = tutor_manager.CreateTutor("Вікторія", "Вакарчук", new DateOnly(2002, 08, 08)),
                 LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
             };
 
             lesson.LessonInfo();
-            InputManager.UserInput("Enter score", input => 
-                lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Manuel")?.Id ?? Guid.Empty, input)); // Id is not null, cause students was created with hardcode!
-            InputManager.UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
-            InputManager.UserInput("Enter score", input => 
-                lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Elisa")?.Id ?? Guid.Empty, input));
-            edPlatformManager.RemoveStudent(edPlatform.Students.Find(s => s.Name == "Manuel") ?? new Student(Guid.Empty, "", "", "") { Name = "", LastName = ""});
+            //InputManager.UserInput("Enter score", input => lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Manuel", input)); // Id is not null, cause students was created with hardcode!
+            //InputManager.UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
+            //InputManager.UserInput("Enter score", input => 
+            //    lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Elisa")?.Id ?? Guid.Empty, input));
+            //edPlatformManager.RemoveStudent(edPlatform.Students.Find(s => s.Name == "Manuel") ?? new Student(Guid.Empty, "", "", "") { Name = "", LastName = ""});
             
 
-             var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", edPlatform.Students)
-             {
-                 Teacher = tutor,
-                 LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
-             };
+             //var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", edPlatform.Students)
+             //{
+             //    Teacher = tutor,
+             //    LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
+             //};
 
-             lesson.LessonInfo();
-             InputManager.UserInput("Enter score", input => 
-                 lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Manuel")?.Id ?? Guid.Empty, input)); // Id is not null, cause students was created with hardcode!
-             InputManager.UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
-             InputManager.UserInput("Enter score", input => 
-                 lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Elisa")?.Id ?? Guid.Empty, input));
-             edPlatformManager.RemoveStudent(edPlatform.Students.Find(s => s.Name == "Manuel") ?? new Student(Guid.Empty, "", "", "") { Name = "", LastName = ""});
 
 
              Student firstStudent = edPlatform.Students.First();
