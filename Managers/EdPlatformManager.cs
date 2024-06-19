@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,19 @@ namespace ThirdTeam_Study.Managers
     {
         public EdPlatformManager(){ }
 
-        public static EdPlatform EdPlatformInstance = EdPlatform.Initialize();
+        public static EdPlatform EdPlatformInstance = null;
 
         public TutorManager TutorManager = new();
 
+        public static bool CreatePlatform()
+        {
+            EdPlatformInstance = EdPlatform.Initialize();
+            return true;
+        }
+        public static bool DeletePlatform()
+        {
+            return EdPlatformInstance.Drop();
+        }
         public void SignUp(Student student) 
         {
             EdPlatformInstance.Students.AddStudent(student);

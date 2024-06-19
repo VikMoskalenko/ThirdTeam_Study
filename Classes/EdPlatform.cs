@@ -41,7 +41,18 @@ namespace ThirdTeam_Study
             return edPlatform;
         }
 
-        
+        public bool Drop()
+        {
+            if(edPlatform != null)
+            {
+                edPlatform = null;
+                return true;
+            }
+            else 
+            { 
+                return false; 
+            }
+        }
         public List<Tutor> Tutors { get; set; } = new List<Tutor>();
         public StudentList Students { get; set; } = new StudentList();
 
