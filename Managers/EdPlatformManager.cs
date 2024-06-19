@@ -10,12 +10,9 @@ namespace ThirdTeam_Study.Managers
 {
     public class EdPlatformManager // будет здорово прописать логику авторизации. Но для этого нам нужно создать отдельный класс Юзер
     {
-        public EdPlatformManager()
-        {
-            
-        }
+        public EdPlatformManager(){ }
 
-        public EdPlatform EdPlatformInstance = EdPlatform.Initialize();
+        public static EdPlatform EdPlatformInstance = EdPlatform.Initialize();
 
         public TutorManager TutorManager = new();
 

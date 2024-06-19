@@ -41,7 +41,7 @@ namespace ThirdTeam_Study
             return edPlatform;
         }
 
-
+        
         public List<Tutor> Tutors { get; set; } = new List<Tutor>();
         public StudentList Students { get; set; } = new StudentList();
 
