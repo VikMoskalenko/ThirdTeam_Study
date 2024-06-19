@@ -8,7 +8,7 @@ using ThirdTeam_Study.Managers;
 
 namespace ThirdTeam_Study.ListTypes
 {
-    public class TutorList : IEnumerable<Tutor>
+    /*public class TutorList : IEnumerable<Tutor>
     {
         private List<Tutor> _tutors = new List<Tutor>();
 
@@ -91,5 +91,5 @@ namespace ThirdTeam_Study.ListTypes
         {
             return GetEnumerator();
         }
-    }
+    }*/
 }

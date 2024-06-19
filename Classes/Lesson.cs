@@ -17,7 +17,7 @@ namespace ThirdTeam_Study
         public const int MaxStudents = 20;
         public readonly string LessonType;
         public StudentList Students { get; set; }
-        public required Tutor Tutor { get; set; }
+        public required Tutor Teacher { get; set; }
         public string LessonTheme { get; set; }
         public required DateTime LessonStart { get; set; }
         private Dictionary<Guid, int> LessonScore;
@@ -52,7 +52,8 @@ namespace ThirdTeam_Study
         }
         public void LessonInfo()
         {
-            OutputManager.Write($"Lesson {LessonType} with {Tutor.Info.First_name} {Tutor.Info.Last_name}");
+
+            OutputManager.Write($"Lesson {LessonType} with {Teacher.FirstName} {Teacher.LastName}");
             LessonStartAt();
             OutputManager.Write($"Theme: {LessonTheme} ");
         }

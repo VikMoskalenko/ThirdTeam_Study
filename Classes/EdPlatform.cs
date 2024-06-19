@@ -8,7 +8,7 @@ namespace ThirdTeam_Study
 {
     public class EdPlatform
     {
-        private static EdPlatform edPlatform = null;
+        private static EdPlatform? edPlatform = null;
 
         public const string URL = "zttps://HillelEdPlatform.com";
         public readonly string Name = "HillelEdPlatform";
@@ -42,7 +42,7 @@ namespace ThirdTeam_Study
         }
 
 
-        public TutorList Tutors { get; set; } = new TutorList();
+        public List<Tutor> Tutors { get; set; } = new List<Tutor>();
         public StudentList Students { get; set; } = new StudentList();
 
         public Properties PlatformProperties { get; }

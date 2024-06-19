@@ -8,13 +8,27 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
+            //TutorManager tutor_manager = new();
+            var tutor_manager = new TutorManager();
+
+            Console.WriteLine(tutor_manager.CreateTutor("Володимир", "Мунтян", new DateOnly(2001, 12, 13)));
+            Console.WriteLine(tutor_manager.CreateTutor("Марія", "Яремчук", new DateOnly(1997, 9, 7)));
+            Console.WriteLine(tutor_manager.CreateTutor("Олег", "Омельчук", new DateOnly(2000, 8, 8)));
+            Console.WriteLine(tutor_manager.CreateTutor("Каріна", "Маліна", new DateOnly(1999, 10, 11)));
+            Console.WriteLine(tutor_manager.CreateTutor("Василь", "Вірастюк", new DateOnly(2001, 1, 7)));
+            Console.WriteLine(tutor_manager.CreateTutor("Микола", "Сидоренко", new DateOnly(2000, 5, 5)));
 
             var edPlatformManager = new EdPlatformManager();
             var edPlatform = edPlatformManager.EdPlatformInstance;
 
-            var tutor = TutorManager.CreateTutor("Mykola", "Posipajlo", new DateOnly(1965, 4, 1));
+            // GetTutorById, UpdateTutor, DeleteTutor можно проверить, выбрав какой-то айдишник из файла Tutor.json
+
+            // Общая часть мейна:
+            
+             var tutor = tutor_manager.CreateTutor("Мікола", "Посіпайло", new DateOnly(1965, 4, 1));
+             var tutor2 = tutor_manager.CreateTutor("Павло", "Лазаренко", new DateOnly(2004, 11, 4));
+
             edPlatformManager.SignUp(tutor);
-            var tutor2 = TutorManager.CreateTutor("Pavlo", "Lazarenko", new DateOnly(1950, 4, 1));
             edPlatformManager.SignUp(tutor2);
 
             edPlatformManager.SignUp(new Student(Guid.NewGuid(), "2016", "José", "Martínez") { Name = "José", LastName = "Martínez" });
@@ -30,44 +44,61 @@ namespace ThirdTeam_Study
 
             var lesson = new Lesson("Ukrainian", "Ukrainian alphabet", edPlatform.Students)
             {
-                Tutor = tutor,
+                Teacher = tutor_manager.CreateTutor("Вікторія", "Вакарчук", new DateOnly(2002, 08, 08)),
                 LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
             };
 
             lesson.LessonInfo();
-            InputManager.UserInput("Enter score", input => 
-                lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Manuel")?.Id ?? Guid.Empty, input)); // Id is not null, cause students was created with hardcode!
-            InputManager.UserInput("Enter score", input => lesson.SetUpdateScore("Isabel", "Sánchez", input));
-            InputManager.UserInput("Enter score", input => 
-                lesson.SetUpdateScore(edPlatform.Students.Find(s => s.Name == "Elisa")?.Id ?? Guid.Empty, input));
-            edPlatformManager.RemoveStudent(edPlatform.Students.Find(s => s.Name == "Manuel") ?? new Student(Guid.Empty, "", "", "") { Name = "", LastName = ""});
-            
 
-            Student firstStudent = edPlatform.Students.First();
 
-            edPlatformManager.GetSupportInfo();
+             Student firstStudent = edPlatform.Students.First();
 
-            HomeWork hw1 = new(firstStudent)
-            {
-                Id = Guid.NewGuid()
-            };
+             edPlatformManager.GetSupportInfo();
 
-            hw1.SubmitHW();
+             HomeWork hw1 = new(firstStudent)
+             {
+                 Id = Guid.NewGuid()
+             };
 
-            Console.WriteLine();
+             hw1.SubmitHW();
 
-            hw1.AssertHW();
+             Console.WriteLine();
 
-            Console.WriteLine();
 
-            hw1.AddHWComment();
+             hw1.AssertHW();
 
-            Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
-            Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
-            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
+             Console.WriteLine();
 
+             hw1.AddHWComment();
+
+             Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
+             Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
+             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
+                       
         }
-        
+        public static void UserInput(string Message, Action<string> setInput)
+        {
+            bool enterError;
+            do
+            {
+                enterError = false;
+                try
+                {
+                    Console.WriteLine(Message);
+                    string? input = Console.ReadLine();
+                    if (input != null)
+                    {
+                        setInput(input);
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    enterError = true;
+
+                }
+            } while (enterError);
+        }
 
     }
 }

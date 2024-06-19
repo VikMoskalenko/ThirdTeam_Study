@@ -17,7 +17,7 @@ namespace ThirdTeam_Study.Managers
                 try
                 {
                     OutputManager.Write(Message);
-                    string input = Console.ReadLine();
+                    string? input = Console.ReadLine();
                     if (input != null)
                     {
                         setInput(input);

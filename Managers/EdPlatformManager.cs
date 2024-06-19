@@ -8,19 +8,27 @@ using ThirdTeam_Study.Records;
 
 namespace ThirdTeam_Study.Managers
 {
-    public class EdPlatformManager
+    public class EdPlatformManager // будет здорово прописать логику авторизации. Но для этого нам нужно создать отдельный класс Юзер
     {
-        public EdPlatformManager() { }
+        public EdPlatformManager()
+        {
+            
+        }
 
         public EdPlatform EdPlatformInstance = EdPlatform.Initialize();
+
+        public TutorManager TutorManager = new();
 
         public void SignUp(Student student) 
         {
             EdPlatformInstance.Students.AddStudent(student);
         }
         public void SignUp(Tutor tutor)
+        // я бы тут передавал в качестве параметров нужные поля для создания Тьютора,
+        // а в самом методе вызывал ТьюторМенеджер.СоздатьТьютора (параметры).
+        // Так у тебя все будет храниться в файле
         {
-            EdPlatformInstance.Tutors.AddTutor(tutor);
+            EdPlatformInstance.Tutors.Add(tutor);
         }
 
         public bool RemoveStudent(Student student)
@@ -28,8 +36,11 @@ namespace ThirdTeam_Study.Managers
             return EdPlatformInstance.Students.RemoveStudent(student.Id);
         }
         public bool RemoveTutor(Tutor tutor)
+        // тут также как и с SignUp: я бы передавал в качестве параметра Айди Тьютора,
+        // а в самом методе вызывал ТьюторМенеджер.УдалитьТьютора (айди).
+        // Так объект удалится из файла 
         {
-            return EdPlatformInstance.Tutors.RemoveTutor(tutor.Id);
+            return EdPlatformInstance.Tutors.Remove(tutor);
         }
 
         public void GetSupportInfo()

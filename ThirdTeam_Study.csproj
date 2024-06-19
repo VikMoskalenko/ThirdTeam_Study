@@ -11,8 +11,21 @@
   <ItemGroup>
     <None Remove="Enums\" />
     <None Remove="Extentions\" />
-    <None Remove="Records\" />
     <None Remove="Classes\" />
     <None Remove="Managers\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Files\" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="Extentions\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Managers\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
 </Project>
