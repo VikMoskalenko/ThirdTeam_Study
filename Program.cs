@@ -1,6 +1,11 @@
 ﻿using System.Text.RegularExpressions;
-using ThirdTeam_Study.Managers;
-using ThirdTeam_Study.ListTypes;
+using System.Configuration;
+using System;
+using System.Data;
+using Dapper;
+using Microsoft.Data.SqlClient;
+using ThirdTeam_Study.BusinessLayer.Managers;
+using ThirdTeam_Study.Data.Classes;
 
 namespace ThirdTeam_Study
 {
@@ -8,6 +13,9 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
+
+            
+
             //TutorManager tutor_manager = new();
             var tutor_manager = new TutorManager();
 
@@ -48,33 +56,43 @@ namespace ThirdTeam_Study
                 LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
             };
 
-            lesson.LessonInfo();
+            var lessonManager = new LessonManager();
+
+            lessonManager.LessonInfo(lesson, tutor);
 
 
              Student firstStudent = edPlatform.Students.First();
 
              edPlatformManager.GetSupportInfo();
 
-             HomeWork hw1 = new(firstStudent)
+             HomeWork hw = new(firstStudent)
              {
                  Id = Guid.NewGuid()
              };
 
-             hw1.SubmitHW();
+             HomeworkManager hwManager = new HomeworkManager();
+
+             hwManager.SubmitHW();
 
              Console.WriteLine();
 
 
-             hw1.AssertHW();
+             hwManager.AssertHW(hw);
 
              Console.WriteLine();
 
-             hw1.AddHWComment();
+             hwManager.AddHWComment(hw);
 
              Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
              Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
-             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hw1.GetStudentFullName(), hw1.HomeWorkNumber, hw1.Grade, hw1.Comment));
-                       
+             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hwManager.GetStudentFullName(hw.Student),
+                 hw.HomeWorkNumber, hw.Grade, hw.Comment));
+
+
+            //using (IDbConnection connection = new SqlConnection(@"Data Source=BYOD-LT-MDZI\SQLEXPRESS;Initial Catalog=ItHillel2024;Integrated Security=True;Encrypt=false;"))
+            //{
+            //    var list = connection.Query<List<Course>>("select* from Courses");
+            //}
         }
         public static void UserInput(string Message, Action<string> setInput)
         {
