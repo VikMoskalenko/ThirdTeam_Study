@@ -79,11 +79,11 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             if (firstName != null && lastName != null)
             {
                 lesson.LessonScore[id] = CorrectScore(score);
-                Console.WriteLine($"Score for student: {firstName} {lastName} : {score}");
+                OutputManager.Write($"Score for student: {firstName} {lastName} : {score}");
             }
             else
             {
-                Console.WriteLine($"Student {id} not in this lesson");
+                OutputManager.Write($"Student {id} not in this lesson");
             }
 
         }
@@ -103,11 +103,11 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             if (id != Guid.Empty)
             {
                 lesson.LessonScore[id] = CorrectScore(score);
-                Console.WriteLine($"Score for student: {firstName} {lastName} : {score}");
+                OutputManager.Write($"Score for student: {firstName} {lastName} : {score}");
             }
             else
             {
-                Console.WriteLine($"Student {id} not in this lesson");
+                OutputManager.Write($"Student {id} not in this lesson");
             }
 
         }

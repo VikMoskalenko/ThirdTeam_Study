@@ -36,14 +36,14 @@ namespace ThirdTeam_Study.Extentions
             {
                 if (student.Name == name && student.LastName == lastName)
                 {
-                    Console.WriteLine($"Student ID: {student.Id} - {student.Name} {student.LastName} is on {lesson.LessonType} lesson");
+                    OutputManager.Write($"Student ID: {student.Id} - {student.Name} {student.LastName} is on {lesson.LessonType} lesson");
                     studentFound = true;
                     break;
                 }
             }
             if (!studentFound)
             {
-                Console.WriteLine($"Student - {name} {lastName} not found");
+                OutputManager.Write($"Student - {name} {lastName} not found");
             }
         }
     }
