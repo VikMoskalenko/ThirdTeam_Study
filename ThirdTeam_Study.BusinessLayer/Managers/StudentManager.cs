@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace ThirdTeam_Study.Managers
+﻿namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class StudentManager
     {

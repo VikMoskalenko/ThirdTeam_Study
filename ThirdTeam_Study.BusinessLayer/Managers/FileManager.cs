@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace ThirdTeam_Study.Managers
+namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class FileManager<T>
     {

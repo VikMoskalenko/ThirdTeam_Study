@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ThirdTeam_Study.Managers;
+﻿using System.Collections;
 
-namespace ThirdTeam_Study.ListTypes
+namespace ThirdTeam_Study.Data.ListTypes
 {
     public class StudentList : IEnumerable<Student>
     {
@@ -15,7 +9,7 @@ namespace ThirdTeam_Study.ListTypes
         public bool AddStudent(Student student)
         {
             _students.Add(student);
-            OutputManager.Write($"Student {student.LastName} added.");
+            //OutputManager.Write($"Student {student.LastName} added.");
             return true;
         }
 
@@ -24,7 +18,7 @@ namespace ThirdTeam_Study.ListTypes
             var NewStudent = new Student(id, studyyear, name, lastname)
             { LastName = lastname, Name = name };
             _students.Add(NewStudent);
-            OutputManager.Write($"Student {NewStudent.LastName} added.");
+            //OutputManager.Write($"Student {NewStudent.LastName} added.");
             return true;
         }
 
@@ -52,13 +46,13 @@ namespace ThirdTeam_Study.ListTypes
             var student = _students.Find(t => t.Name == name && t.LastName == lastname);
             if (student != null)
             {
-                OutputManager.Write($"Student {student.Id} : {student.Name} {student.LastName} removed");
+                //OutputManager.Write($"Student {student.Id} : {student.Name} {student.LastName} removed");
                 _students.Remove(student);
                 return true;
             }
             else
             {
-                OutputManager.Write("Student not found");
+                //OutputManager.Write("Student not found");
                 return false;
             }
         }
@@ -67,13 +61,13 @@ namespace ThirdTeam_Study.ListTypes
             var student = _students.Find(t => t.Id == id);
             if (student != null)
             {
-                OutputManager.Write($"Student {student.Id} : {student.Name} {student.LastName} removed");
+                //OutputManager.Write($"Student {student.Id} : {student.Name} {student.LastName} removed");
                 _students.Remove(student);
                 return true;
             }
             else
             {
-                OutputManager.Write("Student not found");
+                //OutputManager.Write("Student not found");
                 return false;
             }
         }

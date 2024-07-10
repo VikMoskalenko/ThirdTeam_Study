@@ -1,13 +1,8 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ThirdTeam_Study.CustomExceptions;
+﻿using ThirdTeam_Study.CustomExceptions;
+using ThirdTeam_Study.Data.Classes;
 using ThirdTeam_Study.Records;
 
-namespace ThirdTeam_Study.Managers
+namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class EdPlatformManager // будет здорово прописать логику авторизации. Но для этого нам нужно создать отдельный класс Юзер
     {

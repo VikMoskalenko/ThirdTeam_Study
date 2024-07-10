@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using ThirdTeam_Study.Data.ListTypes;
 
-
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.Data.Classes
 {
     public class CustomerService
     {

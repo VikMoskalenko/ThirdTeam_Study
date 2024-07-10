@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-
-namespace ThirdTeam_Study
+﻿namespace ThirdTeam_Study.Data.Classes
 {
     public class Tutor
     {
@@ -15,7 +12,8 @@ namespace ThirdTeam_Study
 
         public int Age { get; set; }
 
-        public int Seniority { get; set; } 
+        public int Seniority { get; set; }
+        public List<Course> Courses { get; set; }
 
         public Tutor()
         {

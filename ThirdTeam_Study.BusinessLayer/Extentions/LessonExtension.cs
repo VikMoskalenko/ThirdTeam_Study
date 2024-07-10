@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using ThirdTeam_Study.Managers;
+using ThirdTeam_Study.BusinessLayer.Managers;
+using ThirdTeam_Study.Data.Classes;
 
 namespace ThirdTeam_Study.Extentions
 {
@@ -35,14 +36,14 @@ namespace ThirdTeam_Study.Extentions
             {
                 if (student.Name == name && student.LastName == lastName)
                 {
-                    Console.WriteLine($"Student ID: {student.Id} - {student.Name} {student.LastName} is on {lesson.LessonType} lesson");
+                    OutputManager.Write($"Student ID: {student.Id} - {student.Name} {student.LastName} is on {lesson.LessonType} lesson");
                     studentFound = true;
                     break;
                 }
             }
             if (!studentFound)
             {
-                Console.WriteLine($"Student - {name} {lastName} not found");
+                OutputManager.Write($"Student - {name} {lastName} not found");
             }
         }
     }

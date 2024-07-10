@@ -1,6 +1,6 @@
-﻿using ThirdTeam_Study.Managers;
+﻿using ThirdTeam_Study.Data.Classes;
 
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class TutorManager // добавить список курсов в Тьютор
     {

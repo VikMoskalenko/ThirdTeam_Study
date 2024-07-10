@@ -1,28 +1,22 @@
-﻿using System.Text.RegularExpressions;
-using ThirdTeam_Study.Managers;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using ThirdTeam_Study.Data.Classes;
 
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.BusinessLayer.Managers
 {
-    public class HomeWork
+    public class HomeworkManager
     {
-        private readonly Student Student;
-        public record Submission(string StudentFullName, ushort HomeWorkNumber, string FilePath, string Comment, ushort Grade);
-
         const string noFile = "File not found";
-        public ushort HomeWorkNumber { get; set; } = 1;
-        public required Guid Id { get; set; }
-        public string Comment { get; set; } = string.Empty;
-        public ushort Grade { get; set; }
-
-        public string HomeWorkFile { get; set; } = string.Empty;
 
         private static readonly string basePath = AppDomain.CurrentDomain.BaseDirectory;
-        private readonly string destinationDirectory = Path.Combine(basePath.Replace("bin\\Debug\\net8.0\\", ""), "uploads");
 
-        public HomeWork(Student _student)
-        {
-            Student = _student;
-        }
+        private readonly string destinationDirectory = Path.Combine(basePath.Replace("bin\\Debug\\net8.0\\", ""), "uploads");
 
         private void UploadHomeWork(string sourceFilePath)
         {
@@ -41,11 +35,13 @@ namespace ThirdTeam_Study
 
             File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
         }
-        public string GetStudentFullName() => $"{Student.Name} {Student.LastName}";
-        // ToDo: get lesson number from Lesson class 
-        public string GetHWTitle() => $"Home work to lesson 1 from student {GetStudentFullName()}";
+        public string GetStudentFullName(Student student) => $"{student.Name} {student.LastName}";
 
-        public void SubmitHW() {
+        // ToDo: get lesson number from Lesson class 
+        public string GetHWTitle(Student student) => $"Home work to lesson 1 from student {GetStudentFullName(student)}";
+
+        public void SubmitHW()
+        {
             while (true)
             {
                 OutputManager.Write("Enter path to your home work file:");
@@ -69,7 +65,7 @@ namespace ThirdTeam_Study
             }
         }
 
-        public void AssertHW ()
+        public void AssertHW(HomeWork homeWork)
         {
             while (true)
             {
@@ -88,13 +84,13 @@ namespace ThirdTeam_Study
                 }
                 else
                 {
-                    Grade = result;
+                    homeWork.Grade = result;
                 }
                 break;
             }
         }
 
-        public void AddHWComment() 
+        public void AddHWComment(HomeWork homeWork)
         {
             while (true)
             {
@@ -107,17 +103,10 @@ namespace ThirdTeam_Study
                 }
                 else
                 {
-                    Comment = comment;
+                    homeWork.Comment = comment;
                     break;
                 }
             }
-        }
-    }
-    public static class HomeWorkExtensions
-    {
-        public static bool IsSubmitted(this HomeWork homework)
-        {
-            return !string.IsNullOrEmpty(homework.HomeWorkFile);
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System.Diagnostics.Metrics;
+﻿using ThirdTeam_Study.Data.ListTypes;
 using ThirdTeam_Study.Enums;
-using ThirdTeam_Study.ListTypes;
-using ThirdTeam_Study.Managers;
 
-
-namespace ThirdTeam_Study
+namespace ThirdTeam_Study.Data.Classes
 {
     public class EdPlatform
     {

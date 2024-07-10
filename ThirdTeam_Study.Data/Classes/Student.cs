@@ -1,4 +1,5 @@
 ﻿using ThirdTeam_Study;
+using ThirdTeam_Study.Data.Classes;
 
 public class Student
 {
@@ -12,6 +13,8 @@ public class Student
 	public required string LastName { get; set; }
 	
 	public DateOnly? DOB { get; set; }
+
+    public List<Lesson> Lessons { get; set; }
 
     public Student()
     {
