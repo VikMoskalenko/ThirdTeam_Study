@@ -1,4 +1,4 @@
-﻿using ThirdTeam_Study.Data.ListTypes;
+﻿
 using ThirdTeam_Study.Enums;
 
 namespace ThirdTeam_Study.Data.Classes
@@ -9,7 +9,9 @@ namespace ThirdTeam_Study.Data.Classes
 
         public const string URL = "zttps://HillelEdPlatform.com";
         public readonly string Name = "HillelEdPlatform";
-        
+
+        public List<Tutor> Tutors { get; set; } = new List<Tutor>();
+        public List<Student> Students { get; set; } = new List<Student>();
 
         protected EdPlatform()
         {
@@ -50,8 +52,7 @@ namespace ThirdTeam_Study.Data.Classes
                 return false; 
             }
         }
-        public List<Tutor> Tutors { get; set; } = new List<Tutor>();
-        public StudentList Students { get; set; } = new StudentList();
+
 
         public Properties PlatformProperties { get; }
 

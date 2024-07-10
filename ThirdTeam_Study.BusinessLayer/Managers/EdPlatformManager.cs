@@ -10,8 +10,6 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         public static EdPlatform EdPlatformInstance = null;
 
-        public TutorManager TutorManager = new();
-
         public static bool CreatePlatform()
         {
             EdPlatformInstance = EdPlatform.Initialize();
@@ -23,7 +21,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         }
         public void SignUp(Student student) 
         {
-            EdPlatformInstance.Students.AddStudent(student);
+            EdPlatformInstance.Students.Add(student);
         }
         public void SignUp(Tutor tutor)
         // я бы тут передавал в качестве параметров нужные поля для создания Тьютора,
@@ -35,7 +33,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         public bool RemoveStudent(Student student)
         {
-            return EdPlatformInstance.Students.RemoveStudent(student.Id);
+            return EdPlatformInstance.Students.Remove(student);
         }
         public bool RemoveTutor(Tutor tutor)
         // тут также как и с SignUp: я бы передавал в качестве параметра Айди Тьютора,
