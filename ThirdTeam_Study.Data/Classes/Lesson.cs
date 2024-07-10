@@ -11,7 +11,7 @@ namespace ThirdTeam_Study.Data.Classes
 
         public required DateTime LessonStart { get; set; }
         public Dictionary<Guid, int> LessonScore;
-        public Lesson(string lessonType, string lessonTheme, StudentList students)
+        public Lesson(string lessonType, string lessonTheme, List<Student> students)
         {
             //Students = CheckCapacity(students);
             LessonType = lessonType;

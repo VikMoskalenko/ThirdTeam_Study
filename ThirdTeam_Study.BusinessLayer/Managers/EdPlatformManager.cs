@@ -6,10 +6,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class EdPlatformManager // будет здорово прописать логику авторизации. Но для этого нам нужно создать отдельный класс Юзер
     {
-        public EdPlatformManager()
-        {
-            
-        }
+        public EdPlatformManager(){ }
 
         public EdPlatform EdPlatformInstance = EdPlatform.Initialize();
 
@@ -17,7 +14,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         public void SignUp(Student student) 
         {
-            EdPlatformInstance.Students.AddStudent(student);
+            EdPlatformInstance.Students.Add(student);
         }
         public void SignUp(Tutor tutor)
         // я бы тут передавал в качестве параметров нужные поля для создания Тьютора,
@@ -29,7 +26,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         public bool RemoveStudent(Student student)
         {
-            return EdPlatformInstance.Students.RemoveStudent(student.Id);
+            return EdPlatformInstance.Students.Remove(student);
         }
         public bool RemoveTutor(Tutor tutor)
         // тут также как и с SignUp: я бы передавал в качестве параметра Айди Тьютора,
