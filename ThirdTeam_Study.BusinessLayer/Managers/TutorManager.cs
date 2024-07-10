@@ -19,7 +19,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
                 Seniority = 0
             };
 
-            //Треба змiнити на Insert в БД за допомогою DapperContext
+            //Треба змiнити на Insert в БД (використовуючи DapperContext)
             //FileManager.WriteToFile(tutor);  
 
             return tutor;

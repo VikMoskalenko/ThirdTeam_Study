@@ -5,10 +5,12 @@ namespace ThirdTeam_Study.Data.Classes
 {
     public class EdPlatform
     {
-        private static EdPlatform? edPlatform = null;
+        public static int Id;
+        private static EdPlatform? Instance = null;
 
         public const string URL = "zttps://HillelEdPlatform.com";
         public readonly string Name = "HillelEdPlatform";
+
 
         public List<Tutor> Tutors { get; set; } = new List<Tutor>();
         public List<Student> Students { get; set; } = new List<Student>();
@@ -24,27 +26,27 @@ namespace ThirdTeam_Study.Data.Classes
 
         public static EdPlatform Initialize()
         {
-            if (edPlatform == null)
+            if (Instance == null)
             {
-                edPlatform = new EdPlatform();
+                Instance = new EdPlatform();
             }
-            return edPlatform;
+            return Instance;
         }
 
         public static EdPlatform Initialize(string language, Themes theme)
         {
-            if (edPlatform == null)
+            if (Instance == null)
             {
-                edPlatform = new EdPlatform(language, theme);
+                Instance = new EdPlatform(language, theme);
             }
-            return edPlatform;
+            return Instance;
         }
 
         public bool Drop()
         {
-            if(edPlatform != null)
+            if(Instance != null)
             {
-                edPlatform = null;
+                Instance = null;
                 return true;
             }
             else 
