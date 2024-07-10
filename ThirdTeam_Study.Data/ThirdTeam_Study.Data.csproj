@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ListTypes\" />
+    <Compile Remove="ListTypes\**" />
+    <EmbeddedResource Remove="ListTypes\**" />
+    <None Remove="ListTypes\**" />
   </ItemGroup>
 
 </Project>

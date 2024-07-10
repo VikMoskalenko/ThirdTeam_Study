@@ -8,39 +8,63 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
     {
         public EdPlatformManager(){ }
 
-        public static EdPlatform EdPlatformInstance = null;
+        public static EdPlatform? EdPlatformInstance = null;
 
-        public static bool CreatePlatform()
+        private TutorManager _tutorManager = new TutorManager();
+        private StudentManager _studentManager = new StudentManager();
+        public static bool CreateEdPlatform()
         {
             EdPlatformInstance = EdPlatform.Initialize();
             return true;
         }
-        public static bool DeletePlatform()
+        public static bool DeleteEdPlatform()
         {
-            return EdPlatformInstance.Drop();
+            if(EdPlatformInstance == null)
+            {
+                return false;
+            } 
+            else
+            {
+                return EdPlatformInstance.Drop();
+            }
         }
+        
         public void SignUp(Student student) 
         {
-            EdPlatformInstance.Students.Add(student);
+            EdPlatformInstance?.Students.Add(student);
         }
         public void SignUp(Tutor tutor)
         // я бы тут передавал в качестве параметров нужные поля для создания Тьютора,
         // а в самом методе вызывал ТьюторМенеджер.СоздатьТьютора (параметры).
         // Так у тебя все будет храниться в файле
         {
-            EdPlatformInstance.Tutors.Add(tutor);
+            EdPlatformInstance?.Tutors.Add(tutor);
         }
 
         public bool RemoveStudent(Student student)
         {
-            return EdPlatformInstance.Students.Remove(student);
+            if( EdPlatformInstance == null)
+            {
+                return false;
+            }
+            else
+            {
+                return EdPlatformInstance.Students.Remove(student);
+            }
         }
         public bool RemoveTutor(Tutor tutor)
         // тут также как и с SignUp: я бы передавал в качестве параметра Айди Тьютора,
         // а в самом методе вызывал ТьюторМенеджер.УдалитьТьютора (айди).
         // Так объект удалится из файла 
         {
-            return EdPlatformInstance.Tutors.Remove(tutor);
+            if (EdPlatformInstance == null)
+            {
+                return false;
+            }
+            else
+            {
+                return EdPlatformInstance.Tutors.Remove(tutor);
+            }
         }
 
         public void GetSupportInfo()
