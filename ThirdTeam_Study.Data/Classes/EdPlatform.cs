@@ -1,4 +1,4 @@
-﻿using ThirdTeam_Study.Data.ListTypes;
+﻿
 using ThirdTeam_Study.Enums;
 
 namespace ThirdTeam_Study.Data.Classes
@@ -8,8 +8,10 @@ namespace ThirdTeam_Study.Data.Classes
         private static EdPlatform? edPlatform = null;
 
         public const string URL = "zttps://HillelEdPlatform.com";
-        public const string Name = "HillelEdPlatform";
-        
+        public readonly string Name = "HillelEdPlatform";
+
+        public List<Tutor> Tutors { get; set; } = new List<Tutor>();
+        public List<Student> Students { get; set; } = new List<Student>();
 
         protected EdPlatform()
         {
@@ -38,9 +40,19 @@ namespace ThirdTeam_Study.Data.Classes
             return edPlatform;
         }
 
+        public bool Drop()
+        {
+            if(edPlatform != null)
+            {
+                edPlatform = null;
+                return true;
+            }
+            else 
+            { 
+                return false; 
+            }
+        }
 
-        public List<Tutor> Tutors { get; set; } = new List<Tutor>();
-        public List<Student> Students { get; set; } = new List<Student>();
 
         public Properties PlatformProperties { get; }
 

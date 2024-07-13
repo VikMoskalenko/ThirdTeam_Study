@@ -32,9 +32,11 @@ namespace ThirdTeam_Study
             // GetTutorById, UpdateTutor, DeleteTutor можно проверить, выбрав какой-то айдишник из файла Tutor.json
 
             // Общая часть мейна:
-            
-             var tutor = tutor_manager.CreateTutor("Мікола", "Посіпайло", new DateOnly(1965, 4, 1));
+
+            var tutor = tutor_manager.CreateTutor("Мікола", "Посіпайло", new DateOnly(1965, 4, 1));
              var tutor2 = tutor_manager.CreateTutor("Павло", "Лазаренко", new DateOnly(2004, 11, 4));
+
+            
 
             edPlatformManager.SignUp(tutor);
             edPlatformManager.SignUp(tutor2);
