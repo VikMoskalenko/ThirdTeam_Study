@@ -6,37 +6,65 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class EdPlatformManager // будет здорово прописать логику авторизации. Но для этого нам нужно создать отдельный класс Юзер
     {
-        public EdPlatformManager()
+        public EdPlatformManager(){ }
+
+        public static EdPlatform? EdPlatformInstance = null;
+
+        private TutorManager _tutorManager = new TutorManager();
+        private StudentManager _studentManager = new StudentManager();
+        public static bool CreateEdPlatform()
         {
-            
+            EdPlatformInstance = EdPlatform.Initialize();
+            return true;
         }
-
-        public EdPlatform EdPlatformInstance = EdPlatform.Initialize();
-
-        public TutorManager TutorManager = new();
-
+        public static bool DeleteEdPlatform()
+        {
+            if(EdPlatformInstance == null)
+            {
+                return false;
+            } 
+            else
+            {
+                return EdPlatformInstance.Drop();
+            }
+        }
+        
         public void SignUp(Student student) 
         {
-            EdPlatformInstance.Students.AddStudent(student);
+            EdPlatformInstance?.Students.Add(student);
         }
         public void SignUp(Tutor tutor)
         // я бы тут передавал в качестве параметров нужные поля для создания Тьютора,
         // а в самом методе вызывал ТьюторМенеджер.СоздатьТьютора (параметры).
         // Так у тебя все будет храниться в файле
         {
-            EdPlatformInstance.Tutors.Add(tutor);
+            EdPlatformInstance?.Tutors.Add(tutor);
         }
 
         public bool RemoveStudent(Student student)
         {
-            return EdPlatformInstance.Students.RemoveStudent(student.Id);
+            if( EdPlatformInstance == null)
+            {
+                return false;
+            }
+            else
+            {
+                return EdPlatformInstance.Students.Remove(student);
+            }
         }
         public bool RemoveTutor(Tutor tutor)
         // тут также как и с SignUp: я бы передавал в качестве параметра Айди Тьютора,
         // а в самом методе вызывал ТьюторМенеджер.УдалитьТьютора (айди).
         // Так объект удалится из файла 
         {
-            return EdPlatformInstance.Tutors.Remove(tutor);
+            if (EdPlatformInstance == null)
+            {
+                return false;
+            }
+            else
+            {
+                return EdPlatformInstance.Tutors.Remove(tutor);
+            }
         }
 
         public void GetSupportInfo()
