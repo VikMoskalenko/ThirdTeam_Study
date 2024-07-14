@@ -25,27 +25,27 @@ namespace ThirdTeam_Study.Data.Classes
 
         public static EdPlatform Initialize()
         {
-            if (edPlatform == null)
+            if (Instance == null)
             {
-                edPlatform = new EdPlatform();
+                Instance = new EdPlatform();
             }
-            return edPlatform;
+            return Instance;
         }
 
         public static EdPlatform Initialize(string language, Themes theme)
         {
-            if (edPlatform == null)
+            if (Instance == null)
             {
-                edPlatform = new EdPlatform(language, theme);
+                Instance = new EdPlatform(language, theme);
             }
-            return edPlatform;
+            return Instance;
         }
 
         public bool Drop()
         {
-            if(edPlatform != null)
+            if(Instance != null)
             {
-                edPlatform = null;
+                Instance = null;
                 return true;
             }
             else 

@@ -77,22 +77,22 @@ INSERT INTO Student (Name, LastName, DOB) VALUES ('Emma', 'Thomas', '2008-10-10'
 Go
 
 Create TABLE EdPlatform(
-	Name varchar(64) PRIMARY KEY not null,
-	Language varchar(8) not null,
+	Name nvarchar(64) PRIMARY KEY not null,
+	Language nvarchar(8) not null,
 	PlatformTheme int not null,
 )
 
 ALTER TABLE Student
-Add EdPlatform varchar(64);
+Add EdPlatform nvarchar(64);
 
 ALTER TABLE Student
 Add constraint FK_Student_EdPlatform_Id FOREIGN KEY(EdPlatform)
 REFERENCES EdPlatform(Name)
 
-ALTER TABLE Tutor
-Add EdPlatform varchar(64);
+ALTER TABLE Teachers
+Add EdPlatform nvarchar(64);
 
-ALTER TABLE Tutor
+ALTER TABLE Teachers
 Add constraint FK_Teachers_EdPlatform_Id FOREIGN KEY(EdPlatform)
 REFERENCES EdPlatform(Name)
 
