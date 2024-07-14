@@ -96,4 +96,8 @@ ALTER TABLE Teachers
 Add constraint FK_Teachers_EdPlatform_Id FOREIGN KEY(EdPlatform)
 REFERENCES EdPlatform(Name)
 
+Insert into EdPlatform (Name, Language, PlatformTheme)
+Values ('HillelEdPlatform', 'en', 0)
+
+
 GO
