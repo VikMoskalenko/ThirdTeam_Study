@@ -5,11 +5,12 @@ namespace ThirdTeam_Study.Data.Classes
 {
     public class EdPlatform
     {
-        private static EdPlatform? edPlatform = null;
+        private static EdPlatform? Instance = null;
 
         public const string URL = "zttps://HillelEdPlatform.com";
         public readonly string Name = "HillelEdPlatform";
 
+        public Properties PlatformProperties { get; }
         public List<Tutor> Tutors { get; set; } = new List<Tutor>();
         public List<Student> Students { get; set; } = new List<Student>();
 
@@ -54,7 +55,6 @@ namespace ThirdTeam_Study.Data.Classes
         }
 
 
-        public Properties PlatformProperties { get; }
 
         public class Properties
         {

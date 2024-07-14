@@ -73,4 +73,27 @@ INSERT INTO Student (Name, LastName, DOB) VALUES ('Daniel', 'Moore', '2005-07-30
 INSERT INTO Student (Name, LastName, DOB) VALUES ('Sophia', 'Taylor', '2006-08-15');
 INSERT INTO Student (Name, LastName, DOB) VALUES ('Alexander', 'Anderson', '2007-09-05');
 INSERT INTO Student (Name, LastName, DOB) VALUES ('Emma', 'Thomas', '2008-10-10');
+
 Go
+
+Create TABLE EdPlatform(
+	Name varchar(64) PRIMARY KEY not null,
+	Language varchar(8) not null,
+	PlatformTheme int not null,
+)
+
+ALTER TABLE Student
+Add EdPlatform varchar(64);
+
+ALTER TABLE Student
+Add constraint FK_Student_EdPlatform_Id FOREIGN KEY(EdPlatform)
+REFERENCES EdPlatform(Name)
+
+ALTER TABLE Tutor
+Add EdPlatform varchar(64);
+
+ALTER TABLE Tutor
+Add constraint FK_Teachers_EdPlatform_Id FOREIGN KEY(EdPlatform)
+REFERENCES EdPlatform(Name)
+
+GO
