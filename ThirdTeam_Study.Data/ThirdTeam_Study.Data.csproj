@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Files\" />
+    <Folder Include="SqlScripts\EdPlatformStoredProcedures\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,7 +15,6 @@ namespace ThirdTeam_Study
         {
             EdPlatformManager.CreateEdPlatform();
             
-
             //TutorManager tutor_manager = new();
             var tutor_manager = new TutorManager();
 
@@ -30,11 +29,10 @@ namespace ThirdTeam_Study
             var edPlatform = edPlatformManager.GetPlatformInstance();
 
             // GetTutorById, UpdateTutor, DeleteTutor можно проверить, выбрав какой-то айдишник из файла Tutor.json
-
             // Общая часть мейна:
 
             var tutor = tutor_manager.CreateTutor("Мікола", "Посіпайло", new DateOnly(1965, 4, 1));
-             var tutor2 = tutor_manager.CreateTutor("Павло", "Лазаренко", new DateOnly(2004, 11, 4));
+            var tutor2 = tutor_manager.CreateTutor("Павло", "Лазаренко", new DateOnly(2004, 11, 4));
 
             
 
