@@ -1,5 +1,6 @@
 ﻿using ThirdTeam_Study.CustomExceptions;
 using ThirdTeam_Study.Data.Classes;
+using ThirdTeam_Study.Enums;
 using ThirdTeam_Study.Records;
 
 namespace ThirdTeam_Study.BusinessLayer.Managers
@@ -8,13 +9,18 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
     {
         public EdPlatformManager(){ }
 
-        public static EdPlatform? EdPlatformInstance = null;
+        private static EdPlatform? EdPlatformInstance = null;
 
         private TutorManager _tutorManager = new TutorManager();
         private StudentManager _studentManager = new StudentManager();
         public static bool CreateEdPlatform()
         {
             EdPlatformInstance = EdPlatform.Initialize();
+            return true;
+        }
+        public static bool CreateEdPlatform(string language, Themes theme)
+        {
+            EdPlatformInstance = EdPlatform.Initialize(language, theme);
             return true;
         }
         public static bool DeleteEdPlatform()
@@ -29,6 +35,19 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             }
         }
         
+        public EdPlatform GetPlatformInstance()
+        {
+            if (EdPlatformInstance != null)
+            {
+                return EdPlatformInstance;
+            }
+            else
+            {
+                CreateEdPlatform();
+                return EdPlatformInstance;
+            }
+        }
+
         public void SignUp(Student student) 
         {
             EdPlatformInstance?.Students.Add(student);
