@@ -4,6 +4,9 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class TutorManager // добавить список курсов в Тьютор
     {
+
+        public event Action TutorsUpdated;
+
         public TutorManager(){ }
         public Tutor CreateTutor(string first_name, string last_name, DateOnly b_day)
         {
@@ -22,7 +25,19 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             //Треба змiнити на Insert в БД (використовуючи DapperContext)
             //FileManager.WriteToFile(tutor);  
 
+            TutorsUpdated.Invoke();
             return tutor;
+        }
+        public bool CreateTutor(Tutor tutor)
+        {
+            if (tutor.Birthday.ToCalculateAge() < 18) throw new ArgumentException("Tutor`s age cannot be less than 18 y.o.!");
+
+
+            //Треба змiнити на Insert в БД (використовуючи DapperContext)
+            //FileManager.WriteToFile(tutor);  
+
+            TutorsUpdated.Invoke();
+            return true;
         }
 
         public Tutor? GetTutorById(Guid id)
@@ -52,6 +67,8 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             FileManager?.WriteToFile(tutor); */
 
             // Зробити Set з новими данними по id
+
+            TutorsUpdated.Invoke();
             return true;
         }
 
@@ -69,6 +86,8 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             FileManager?.WriteToFile(tutor); */
 
             // Теж саме що й вище
+
+            TutorsUpdated.Invoke();
             return true;
         }
 
@@ -88,10 +107,12 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             FileManager?.WriteToFile(tutor); */
 
             // Теж саме що й вище
+
+            TutorsUpdated.Invoke();
             return true;
         }
 
-        public bool DeleteTutor(Guid id)
+        public bool DeleteTutorById(Guid id)
         {
             /* if (GetTutorById(id) == null) return false;
 
@@ -102,9 +123,10 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             tutor_list?.RemoveAll(x => x.Id == id);
             FileManager?.ClearFile();
             FileManager?.WriteToFile(tutor_list); */
-            
+
             //DELETE FROM Teachers WHERE id = {id} 
 
+            TutorsUpdated.Invoke();
             return true;
         }
 

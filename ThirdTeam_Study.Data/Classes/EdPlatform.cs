@@ -12,8 +12,8 @@ namespace ThirdTeam_Study.Data.Classes
         public readonly string Name = "HillelEdPlatform";
 
         public Properties PlatformProperties { get; }
-        public List<Tutor> Tutors { get; set; } = new List<Tutor>();
-        public List<Student> Students { get; set; } = new List<Student>();
+        public List<Tutor>? Tutors { get; set; }
+        public List<Student>? Students { get; set; }
 
         protected EdPlatform()
         {

@@ -11,7 +11,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
     {
         public const int MaxStudents = 20;
 
-        private Data.ListTypes.StudentList CheckCapacity(Data.ListTypes.StudentList students)
+        private List<Student> CheckCapacity(List<Student> students)
         {
             if (students.Count() > MaxStudents)
             {

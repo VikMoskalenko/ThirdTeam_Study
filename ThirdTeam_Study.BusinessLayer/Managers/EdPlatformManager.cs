@@ -13,17 +13,36 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         private TutorManager _tutorManager = new TutorManager();
         private StudentManager _studentManager = new StudentManager();
-        public static bool CreateEdPlatform()
+
+        public void UpdateStudents()
+        {   if(EdPlatformInstance != null)
+            {
+                EdPlatformInstance.Students = _studentManager.GetAllStudents();
+            }
+        }
+        public void UpdateTutors()
+        {
+            if (EdPlatformInstance != null)
+            {
+                EdPlatformInstance.Tutors = _tutorManager.GetAllTutors();
+            }
+        }
+
+        public bool CreateEdPlatform()
         {
             EdPlatformInstance = EdPlatform.Initialize();
+            _tutorManager.TutorsUpdated += UpdateTutors;
+            _studentManager.StudentsUpdated += UpdateStudents;
             return true;
         }
-        public static bool CreateEdPlatform(string language, Themes theme)
+        public bool CreateEdPlatform(string language, Themes theme)
         {
             EdPlatformInstance = EdPlatform.Initialize(language, theme);
+            _tutorManager.TutorsUpdated += UpdateTutors;
+            _studentManager.StudentsUpdated += UpdateStudents;
             return true;
         }
-        public static bool DeleteEdPlatform()
+        public bool DeleteEdPlatform()
         {
             if(EdPlatformInstance == null)
             {
@@ -50,43 +69,23 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         public void SignUp(Student student) 
         {
-            EdPlatformInstance?.Students.Add(student);
+            _studentManager.CreateStudent(student);
         }
         public void SignUp(Tutor tutor)
-        // я бы тут передавал в качестве параметров нужные поля для создания Тьютора,
-        // а в самом методе вызывал ТьюторМенеджер.СоздатьТьютора (параметры).
-        // Так у тебя все будет храниться в файле
         {
-            EdPlatformInstance?.Tutors.Add(tutor);
+            _tutorManager.CreateTutor(tutor);
         }
 
-        public bool RemoveStudent(Student student)
+        public bool RemoveStudent(Guid id)
         {
-            if( EdPlatformInstance == null)
-            {
-                return false;
-            }
-            else
-            {
-                return EdPlatformInstance.Students.Remove(student);
-            }
+            return _studentManager.DeleteStudentById(id);
         }
-        public bool RemoveTutor(Tutor tutor)
-        // тут также как и с SignUp: я бы передавал в качестве параметра Айди Тьютора,
-        // а в самом методе вызывал ТьюторМенеджер.УдалитьТьютора (айди).
-        // Так объект удалится из файла 
+        public bool RemoveTutor(Guid id)
         {
-            if (EdPlatformInstance == null)
-            {
-                return false;
-            }
-            else
-            {
-                return EdPlatformInstance.Tutors.Remove(tutor);
-            }
+            return _tutorManager.DeleteTutorById(id);
         }
 
-        public void GetSupportInfo()
+        public static void GetSupportInfo()
         {
             OutputManager.Write($"Service: {SupportInfo.ServiceName}");
             OutputManager.Write($"Service Email: {SupportInfo.ServiceEmail}");

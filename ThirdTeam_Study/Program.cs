@@ -13,7 +13,8 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            EdPlatformManager.CreateEdPlatform();
+            var edPlatformManager = new EdPlatformManager();
+            edPlatformManager.CreateEdPlatform();
             
             //TutorManager tutor_manager = new();
             var tutor_manager = new TutorManager();
@@ -25,7 +26,7 @@ namespace ThirdTeam_Study
             Console.WriteLine(tutor_manager.CreateTutor("Василь", "Вірастюк", new DateOnly(2001, 1, 7)));
             Console.WriteLine(tutor_manager.CreateTutor("Микола", "Сидоренко", new DateOnly(2000, 5, 5)));
 
-            var edPlatformManager = new EdPlatformManager();
+            
             var edPlatform = edPlatformManager.GetPlatformInstance();
 
             // GetTutorById, UpdateTutor, DeleteTutor можно проверить, выбрав какой-то айдишник из файла Tutor.json
@@ -63,7 +64,7 @@ namespace ThirdTeam_Study
 
              Student firstStudent = edPlatform.Students.First();
 
-             edPlatformManager.GetSupportInfo();
+             EdPlatformManager.GetSupportInfo();
 
              HomeWork hw = new(firstStudent)
              {

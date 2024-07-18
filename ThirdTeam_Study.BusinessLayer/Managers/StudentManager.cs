@@ -1,25 +1,32 @@
-﻿namespace ThirdTeam_Study.BusinessLayer.Managers
+﻿using ThirdTeam_Study.Data.Classes;
+
+namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class StudentManager
     {
+        public event Action StudentsUpdated;
+
         public StudentManager() 
         { 
 
         }
 
-        public bool AddStudent(Student student)
+        public bool CreateStudent(Student student)
         {
             // Add logic with DB
+            StudentsUpdated.Invoke();
             return true;
         }
         public bool DeleteStudent(Student student)
         {
             // Add logic with DB
+            StudentsUpdated.Invoke();
             return true;
         }
         public bool DeleteStudentById(Guid id)
         {
             // Add logic with DB
+            StudentsUpdated.Invoke();
             return true;
         }
         public Student GetStudentById(Guid id)
@@ -30,6 +37,7 @@
         public bool UpdateStudent(Student student)
         {
             // Add logic with DB
+            StudentsUpdated.Invoke();
             return true;
         }
         public List<Student>? GetAllStudents()
