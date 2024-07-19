@@ -13,9 +13,14 @@ namespace ThirdTeam_Study
     {
         static void Main()
         {
-            var edPlatformManager = new EdPlatformManager();
+            var config = new ConfigurationBuilder()
+                 .SetBasePath(Directory.GetCurrentDirectory())
+                 .AddJsonFile("appsettings.json")
+                 .Build();
+
+            var edPlatformManager = new EdPlatformManager(config);
             edPlatformManager.CreateEdPlatform();
-            
+
             //TutorManager tutor_manager = new();
             var tutor_manager = new TutorManager();
 
@@ -26,7 +31,7 @@ namespace ThirdTeam_Study
             Console.WriteLine(tutor_manager.CreateTutor("Василь", "Вірастюк", new DateOnly(2001, 1, 7)));
             Console.WriteLine(tutor_manager.CreateTutor("Микола", "Сидоренко", new DateOnly(2000, 5, 5)));
 
-            
+
             var edPlatform = edPlatformManager.GetPlatformInstance();
 
             // GetTutorById, UpdateTutor, DeleteTutor можно проверить, выбрав какой-то айдишник из файла Tutor.json
@@ -35,7 +40,7 @@ namespace ThirdTeam_Study
             var tutor = tutor_manager.CreateTutor("Мікола", "Посіпайло", new DateOnly(1965, 4, 1));
             var tutor2 = tutor_manager.CreateTutor("Павло", "Лазаренко", new DateOnly(2004, 11, 4));
 
-            
+
 
             edPlatformManager.SignUp(tutor);
             edPlatformManager.SignUp(tutor2);
@@ -57,37 +62,39 @@ namespace ThirdTeam_Study
                 LessonStart = new DateTime(2024, 01, 25, 14, 00, 00),
             };
 
-            var lessonManager = new LessonManager();
+            Guid lessonId = new Guid("57951D87-F63D-4450-909F-53B9DC5B9F93");
+            
+            var lessonManager = new LessonManager(config);
 
-            lessonManager.LessonInfo(lesson, tutor);
-
-
-             Student firstStudent = edPlatform.Students.First();
-
-             EdPlatformManager.GetSupportInfo();
-
-             HomeWork hw = new(firstStudent)
-             {
-                 Id = Guid.NewGuid()
-             };
-
-             HomeworkManager hwManager = new HomeworkManager();
-
-             hwManager.SubmitHW();
-
-             Console.WriteLine();
+            lessonManager.LessonInfo(lessonId);
 
 
-             hwManager.AssertHW(hw);
+            Student firstStudent = edPlatform.Students.First();
 
-             Console.WriteLine();
+            EdPlatformManager.GetSupportInfo();
 
-             hwManager.AddHWComment(hw);
+            HomeWork hw = new(firstStudent)
+            {
+                Id = Guid.NewGuid()
+            };
 
-             Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
-             Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
-             Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hwManager.GetStudentFullName(hw.Student),
-                 hw.HomeWorkNumber, hw.Grade, hw.Comment));
+            HomeworkManager hwManager = new HomeworkManager();
+
+            hwManager.SubmitHW();
+
+            Console.WriteLine();
+
+
+            hwManager.AssertHW(hw);
+
+            Console.WriteLine();
+
+            hwManager.AddHWComment(hw);
+
+            Console.WriteLine(String.Format("| {0,15 } | {1,20} | {2,15} | {3,25} |", "Teacher", "Home work number", "Grade", "Comment"));
+            Console.WriteLine("| {0,-15} | {1,-20} | {2, -15} | {3, -25} |", new string('-', 15), new string('-', 20), new string('-', 15), new string('-', 25));
+            Console.WriteLine(String.Format("| {0,15} | {1,20} | {2,15} | {3,25} |", hwManager.GetStudentFullName(hw.Student),
+                hw.HomeWorkNumber, hw.Grade, hw.Comment));
 
 
             //using (IDbConnection connection = new SqlConnection(@"Data Source=BYOD-LT-MDZI\SQLEXPRESS;Initial Catalog=ItHillel2024;Integrated Security=True;Encrypt=false;"))
