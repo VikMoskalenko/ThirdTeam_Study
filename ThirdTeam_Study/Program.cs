@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using System.Configuration;
 using System;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;

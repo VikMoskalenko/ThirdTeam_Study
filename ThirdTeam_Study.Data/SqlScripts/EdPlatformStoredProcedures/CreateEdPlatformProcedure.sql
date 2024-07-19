@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE CreateEdPlaform
+﻿CREATE PROCEDURE CreateEdPlaformProcedure
 	@Language varchar(8),
 	@Theme int
 

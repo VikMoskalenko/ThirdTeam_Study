@@ -1,4 +1,8 @@
-﻿using ThirdTeam_Study.CustomExceptions;
+﻿using Azure;
+using Dapper;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using ThirdTeam_Study.CustomExceptions;
 using ThirdTeam_Study.Data.Classes;
 using ThirdTeam_Study.Enums;
 using ThirdTeam_Study.Records;
@@ -8,7 +12,14 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
     public class EdPlatformManager // будет здорово прописать логику авторизации. Но для этого нам нужно создать отдельный класс Юзер
     {
         public EdPlatformManager(){ }
+        public EdPlatformManager(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
+        private static IConfiguration _configuration = new ConfigurationBuilder().Build();
+        private string connectionString = _configuration.GetConnectionString("SqlServer");
+        private DapperContext _dapperContext = new DapperContext();
         private static EdPlatform? EdPlatformInstance = null;
 
         private TutorManager _tutorManager = new TutorManager();
@@ -33,23 +44,44 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             EdPlatformInstance = EdPlatform.Initialize();
             _tutorManager.TutorsUpdated += UpdateTutors;
             _studentManager.StudentsUpdated += UpdateStudents;
+
+            SqlConnection? connection = _dapperContext.OpenConnection(connectionString);
+
+            var parameters = new { };
+            connection.Execute("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            connection.Close();
+
             return true;
         }
         public bool CreateEdPlatform(string language, Themes theme)
         {
+            if (language.Length > 2) return false;
             EdPlatformInstance = EdPlatform.Initialize(language, theme);
             _tutorManager.TutorsUpdated += UpdateTutors;
             _studentManager.StudentsUpdated += UpdateStudents;
+
+            SqlConnection? connection = _dapperContext.OpenConnection(connectionString);
+ 
+            var parameters = new { @Language = language, @Theme = theme};
+            connection.Execute("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            connection.Close();
+
             return true;
         }
         public bool DeleteEdPlatform()
         {
-            if(EdPlatformInstance == null)
+            SqlConnection? connection = _dapperContext.OpenConnection(connectionString);
+            var parameters = new { };
+            if (EdPlatformInstance == null)
             {
                 return false;
             } 
             else
             {
+                _tutorManager.TutorsUpdated -= UpdateTutors;
+                _studentManager.StudentsUpdated -= UpdateStudents;
+                connection.Execute("DeleteEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                connection.Close();
                 return EdPlatformInstance.Drop();
             }
         }

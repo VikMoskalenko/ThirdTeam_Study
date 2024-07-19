@@ -13,6 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="SqlScripts\EdPlatformStoredProcedures\DeleteEdPlatformProcedure.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="SqlScripts\EdPlatformStoredProcedures\DeleteEdPlatformProcedure.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Files\" />
   </ItemGroup>
 

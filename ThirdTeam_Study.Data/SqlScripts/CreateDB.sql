@@ -120,8 +120,8 @@ DROP TABLE EdPlatform
 Create TABLE EdPlatform(
 	Id uniqueidentifier PRIMARY KEY not null DEFAULT newid(),
 	Name nvarchar(64) not null,
-	Language nvarchar(8) not null,
-	PlatformTheme int not null,
+	Language nvarchar(8) not null DEFAULT 'en',
+	PlatformTheme int not null DEFAULT 0,
 )
 
 ALTER TABLE Student
