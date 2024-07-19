@@ -99,5 +99,43 @@ REFERENCES EdPlatform(Name)
 Insert into EdPlatform (Name, Language, PlatformTheme)
 Values ('HillelEdPlatform', 'en', 0)
 
+GO
+
+DELETE FROM EdPlatform
+
+ALTER TABLE Students
+DROP Constraint FK_Student_EdPlatform_Id
+
+ALTER TABLE Teachers
+DROP Constraint FK_Teachers_EdPlatform_Id
+
+ALTER TABLE Teachers
+DROP COLUMN EdPlatform
+
+ALTER TABLE Students
+DROP COLUMN EdPlatform
+
+DROP TABLE EdPlatform
+
+Create TABLE EdPlatform(
+	Id uniqueidentifier PRIMARY KEY not null DEFAULT newid(),
+	Name nvarchar(64) not null,
+	Language nvarchar(8) not null,
+	PlatformTheme int not null,
+)
+
+ALTER TABLE Student
+Add EdPlatform uniqueidentifier;
+
+ALTER TABLE Student
+Add constraint FK_Student_EdPlatform_Id FOREIGN KEY(EdPlatform)
+REFERENCES EdPlatform(Id)
+
+ALTER TABLE Teachers
+Add EdPlatform uniqueidentifier;
+
+ALTER TABLE Teachers
+Add constraint FK_Teachers_EdPlatform_Id FOREIGN KEY(EdPlatform)
+REFERENCES EdPlatform(Id)
 
 GO
