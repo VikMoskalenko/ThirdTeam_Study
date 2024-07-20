@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +13,21 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class LessonManager
     {
+
+        private static IConfiguration _configuration = new ConfigurationBuilder().Build();
+        private string connectionString = _configuration.GetConnectionString("SqlServer");
+        private DapperContext _dapperContext = new DapperContext();
+
+        public LessonManager() { }
+        public LessonManager(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            connectionString = _configuration.GetConnectionString("SqlServer");
+        }
+
         public const int MaxStudents = 20;
 
-        private Data.ListTypes.StudentList CheckCapacity(Data.ListTypes.StudentList students)
+        private List<Student> CheckCapacity(List<Student> students)
         {
             if (students.Count() > MaxStudents)
             {
@@ -32,12 +48,25 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             }
 
         }
-        public void LessonInfo(Lesson lesson, Tutor teacher)
+        public void LessonInfo(Guid lessonId)
         {
+            using (IDbConnection connection = _dapperContext.OpenConnection(connectionString))
+            {
+                var parameters = new { LessonId = lessonId };
+                var lessonInfo = connection.QuerySingleOrDefault("GetLessonInfo", parameters, commandType: System.Data.CommandType.StoredProcedure);
 
-            OutputManager.Write($"Lesson {lesson.LessonType} with {teacher.FirstName} {teacher.LastName}");
-            LessonStartAt(lesson.LessonStart);
-            OutputManager.Write($"Theme: {lesson.LessonTheme} ");
+                if (lessonInfo != null)
+                {
+                    OutputManager.Write($"Lesson {lessonInfo.LessonType} with {lessonInfo.TutorFirstName} {lessonInfo.TutorLastName}");
+                    LessonStartAt(lessonInfo.LessonStart);
+                    OutputManager.Write($"Theme: {lessonInfo.LessonTheme}");
+                }
+                else
+                {
+                    OutputManager.Write("Lesson not found.");
+                }
+                connection.Close();
+            }
         }
 
         private Dictionary<Guid, int> LessonScoreInit(Lesson lesson)
@@ -111,5 +140,16 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             }
 
         }
+        public bool CreateLesson(string lessonType, string lessonTheme, DateTime lessonStart, Guid tutorId)
+        {
+            using (SqlConnection connection = _dapperContext.OpenConnection(connectionString))
+            {
+                var parameters = new { LessonType = lessonType, LessonTheme = lessonTheme, LessonStart = lessonStart, TutorID = tutorId };
+                connection.Execute("CreateLesson", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            }
+
+            return true;
+        }
+
     }
 }
