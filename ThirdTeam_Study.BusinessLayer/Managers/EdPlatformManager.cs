@@ -11,11 +11,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class EdPlatformManager // будет здорово прописать логику авторизации. Но для этого нам нужно создать отдельный класс Юзер
     {
-        public EdPlatformManager(){ }
-        public EdPlatformManager(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        
 
         private static IConfiguration _configuration = new ConfigurationBuilder().Build();
         private string connectionString = _configuration.GetConnectionString("SqlServer");
@@ -24,6 +20,13 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         private TutorManager _tutorManager = new TutorManager();
         private StudentManager _studentManager = new StudentManager();
+
+        public EdPlatformManager() { }
+        public EdPlatformManager(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            connectionString = _configuration.GetConnectionString("SqlServer");
+        }
 
         public void UpdateStudents()
         {   if(EdPlatformInstance != null)
