@@ -23,5 +23,11 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             connection.Close();
             IsConnected = false;
         }
+      
+        
+        internal IDisposable OpenConnection()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

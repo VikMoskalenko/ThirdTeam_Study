@@ -6,7 +6,7 @@ namespace ThirdTeam_Study.Data.Classes
     public class Student
     {
         public readonly string? StudyYear;
-        public const string University = "Hogwarts";
+        //public const string University = "Hogwarts";
 
         public Guid Id { get; }
         public HomeWork? Homework { get; set; }

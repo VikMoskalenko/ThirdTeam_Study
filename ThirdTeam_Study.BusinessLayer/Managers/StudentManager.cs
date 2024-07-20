@@ -1,16 +1,32 @@
-﻿using ThirdTeam_Study.Data.Classes;
+﻿using Microsoft.Extensions.Configuration;
+using ThirdTeam_Study.Data.Classes;
+using Dapper;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class StudentManager
     {
         public event Action StudentsUpdated;
+        private static IConfiguration _configuration = new ConfigurationBuilder().Build();
+        private string connectionString = _configuration.GetConnectionString("SqlServer");
+        private DapperContext _context = new DapperContext();
+        private static Student? studentInstance = null;
 
-        public StudentManager() 
-        { 
+        public StudentManager()
+        {
 
         }
-
+        public StudentManager(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            connectionString = _configuration.GetConnectionString("SqlServer");
+        }
+        public StudentManager(DapperContext context)
+        {
+            _context = context;
+        }
         public bool CreateStudent(Student student)
         {
             // Add logic with DB
@@ -32,11 +48,13 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         public Student GetStudentById(Guid id)
         {
             // Add logic with DB
-            return new Student() { Name = "", LastName = ""};
+          
+            return new Student() { Name = "", LastName = "" };
         }
         public bool UpdateStudent(Student student)
         {
             // Add logic with DB
+           
             StudentsUpdated.Invoke();
             return true;
         }
@@ -58,5 +76,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         {
             return $"Hello, I am {Name}";
         }
+
+
     }
 }
