@@ -3,15 +3,21 @@ using ThirdTeam_Study.Data.Classes;
 using Dapper;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class StudentManager
     {
-        public event Action StudentsUpdated;
         private static IConfiguration _configuration = new ConfigurationBuilder().Build();
         private string connectionString = _configuration.GetConnectionString("SqlServer");
-        private DapperContext _context = new DapperContext();
+        private DapperContext _dapperContext = new DapperContext();
+        public event Action StudentsUpdated;
+        //private readonly string connectionString;
+        //private readonly DapperContext context;
+        //private static IConfiguration _configuration = new ConfigurationBuilder().Build();
+        ////private string connectionString = _configuration.GetConnectionString("SqlServer");
+        ////private DapperContext _context = new DapperContext();
         private static Student? studentInstance = null;
 
         public StudentManager()
@@ -22,10 +28,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         {
             _configuration = configuration;
             connectionString = _configuration.GetConnectionString("SqlServer");
-        }
-        public StudentManager(DapperContext context)
-        {
-            _context = context;
+            // context = new DapperContext(connectionString);
         }
         public bool CreateStudent(Student student)
         {
@@ -33,6 +36,16 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             StudentsUpdated.Invoke();
             return true;
         }
+
+        //public bool CreateStudent(Student student)
+        //{
+        //    using var connection = context.OpenConnection(connectionString);
+        //    var result = connection.Execute("CreateStudent",
+        //        new { student.Name, student.LastName, DOB = student.DOB?.ToDateTime(new TimeOnly()) },
+        //        commandType: CommandType.StoredProcedure);
+        //    StudentsUpdated?.Invoke();
+        //    return result > 0;
+        //}
         public bool DeleteStudent(Student student)
         {
             // Add logic with DB

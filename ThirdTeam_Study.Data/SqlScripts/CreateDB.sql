@@ -234,3 +234,7 @@ CREATE TABLE LessonStudentList (
     LessonID UNIQUEIDENTIFIER NOT NULL,
     StudentID UNIQUEIDENTIFIER NOT NULL,
     PRIMARY KEY (LessonID, StudentID));
+
+ALTER TABLE LessonStudentList
+ADD CONSTRAINT FK_LessonStudentList_Lesson_Id
+FOREIGN KEY (LessonID) REFERENCES Lesson(Id);

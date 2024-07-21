@@ -9,7 +9,12 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 {
     public class DapperContext
     {
-        public DapperContext() { }
+        //added readonly and added param to ctor dappercontext
+       // private readonly string connectionString;
+        public DapperContext() 
+        { 
+           
+        }
         public bool IsConnected { get; set; }
         public SqlConnection OpenConnection(string connectionString)
         {
@@ -25,9 +30,6 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         }
       
         
-        internal IDisposable OpenConnection()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

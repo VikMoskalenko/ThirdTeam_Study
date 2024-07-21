@@ -17,10 +17,11 @@ namespace ThirdTeam_Study.Data.Classes
         public DateOnly? DOB { get; set; }
 
         public List<Lesson> Lessons { get; set; }
+        //public Student() { }
 
         public Student()
         {
-
+            Lessons = new List<Lesson>();
         }
         public Student(Guid id, string studyyear, string name, string lastname)
         {
