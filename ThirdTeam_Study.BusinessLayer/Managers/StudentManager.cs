@@ -26,6 +26,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         }
         public StudentManager(IConfiguration configuration)
         {
+            
             _configuration = configuration;
             connectionString = _configuration.GetConnectionString("SqlServer");
             // context = new DapperContext(connectionString);
