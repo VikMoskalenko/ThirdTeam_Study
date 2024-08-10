@@ -31,7 +31,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         public void UpdateStudents()
         {   if(EdPlatformInstance != null)
             {
-                EdPlatformInstance.Students = _studentManager.GetAllStudents();
+                EdPlatformInstance.Students = _studentManager.GetAllStudentsAsync();
             }
         }
         public void UpdateTutors()
@@ -104,7 +104,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         public void SignUp(Student student) 
         {
-            _studentManager.CreateStudent(student);
+            _studentManager.CreateStudentAsync(student);
         }
         public void SignUp(Tutor tutor)
         {
@@ -113,7 +113,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
 
         public bool RemoveStudent(Guid id)
         {
-            return _studentManager.DeleteStudentById(id);
+            return _studentManager.DeleteStudentByIdAsync(id);
         }
         public bool RemoveTutor(Guid id)
         {
