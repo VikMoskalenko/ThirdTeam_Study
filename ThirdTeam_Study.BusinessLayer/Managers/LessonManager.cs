@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -142,7 +143,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         }
         public bool CreateLesson(string lessonType, string lessonTheme, DateTime lessonStart, Guid tutorId)
         {
-            using (SqlConnection connection = _dapperContext.OpenConnection(connectionString))
+            using (NpgsqlConnection connection = _dapperContext.OpenConnection(connectionString))
             {
                 var parameters = new { LessonType = lessonType, LessonTheme = lessonTheme, LessonStart = lessonStart, TutorID = tutorId };
                 connection.Execute("CreateLesson", parameters, commandType: System.Data.CommandType.StoredProcedure);
