@@ -43,7 +43,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             }
         }
 
-        public bool CreateEdPlatform()
+        public async Task<bool> CreateEdPlatformAsync()
         {
             EdPlatformInstance = EdPlatform.Initialize();
             _tutorManager.TutorsUpdated += UpdateTutors;
@@ -52,12 +52,12 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             NpgsqlConnection? connection = _dapperContext.OpenConnection(connectionString);
 
             var parameters = new { };
-            connection.Execute("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            await connection.ExecuteAsync("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
             connection.Close();
 
             return true;
         }
-        public bool CreateEdPlatform(string language, Themes theme)
+        public async Task<bool> CreateEdPlatformAsync(string language, Themes theme)
         {
             if (language.Length > 2) return false;
             EdPlatformInstance = EdPlatform.Initialize(language, theme);
@@ -67,12 +67,12 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             NpgsqlConnection? connection = _dapperContext.OpenConnection(connectionString);
  
             var parameters = new { @Language = language, @Theme = theme};
-            connection.Execute("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            await connection.ExecuteAsync("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
             connection.Close();
 
             return true;
         }
-        public bool DeleteEdPlatform()
+        public async Task<bool> DeleteEdPlatformAsync()
         {
             NpgsqlConnection? connection = _dapperContext.OpenConnection(connectionString);
             var parameters = new { };
@@ -84,7 +84,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             {
                 _tutorManager.TutorsUpdated -= UpdateTutors;
                 _studentManager.StudentsUpdated -= UpdateStudents;
-                connection.Execute("DeleteEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                await connection.ExecuteAsync("eEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
                 connection.Close();
                 return EdPlatformInstance.Drop();
             }
@@ -98,7 +98,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             }
             else
             {
-                CreateEdPlatform();
+                CreateEdPlatformAsync();
                 return EdPlatformInstance;
             }
         }
