@@ -54,10 +54,6 @@ namespace ThirdTeam_Study.Data.Classes
                 return false; 
             }
         }
-
-
-
-
         public class Properties
         {
             public Properties(string language, Themes theme)

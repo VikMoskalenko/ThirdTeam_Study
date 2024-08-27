@@ -10,7 +10,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
     public class StudentManager
     {
         private static IConfiguration _configuration = new ConfigurationBuilder().Build();
-        private string connectionString = _configuration.GetConnectionString("SqlServer");
+        private string connectionString = _configuration.GetConnectionString("PostgreSql");
         private DapperContext _dapperContext = new DapperContext();
         public event Action StudentsUpdated;
         //private readonly string connectionString;
@@ -28,7 +28,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         {
             
             _configuration = configuration;
-            connectionString = _configuration.GetConnectionString("SqlServer");
+            connectionString = _configuration.GetConnectionString("PostgreSql");
             // context = new DapperContext(connectionString);
         }
         public bool CreateStudent(Student student)

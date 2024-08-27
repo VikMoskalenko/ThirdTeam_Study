@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +16,14 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
            
         }
         public bool IsConnected { get; set; }
-        public SqlConnection OpenConnection(string connectionString)
+        public NpgsqlConnection OpenConnection(string connectionString)
         {
-            var connection = new SqlConnection(connectionString);
+            var connection = new NpgsqlConnection(connectionString);
             connection.Open();
             IsConnected = true;
             return connection;
         }
-        public void CloseConnection(SqlConnection connection)
+        public void CloseConnection(NpgsqlConnection connection)
         {
             connection.Close();
             IsConnected = false;

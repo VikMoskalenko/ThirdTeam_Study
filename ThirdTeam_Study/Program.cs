@@ -19,7 +19,7 @@ namespace ThirdTeam_Study
                  .Build();
 
             var edPlatformManager = new EdPlatformManager(config);
-            edPlatformManager.CreateEdPlatform();
+            edPlatformManager.CreateEdPlatformAsync();
 
             //TutorManager tutor_manager = new();
             var tutor_manager = new TutorManager();

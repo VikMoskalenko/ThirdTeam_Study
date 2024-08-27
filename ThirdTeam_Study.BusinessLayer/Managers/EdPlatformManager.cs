@@ -2,6 +2,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 using ThirdTeam_Study.CustomExceptions;
 using ThirdTeam_Study.Data.Classes;
 using ThirdTeam_Study.Enums;
@@ -14,7 +15,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         
 
         private static IConfiguration _configuration = new ConfigurationBuilder().Build();
-        private string connectionString = _configuration.GetConnectionString("SqlServer");
+        private string connectionString = _configuration.GetConnectionString("PostgreSql");
         private DapperContext _dapperContext = new DapperContext();
         private static EdPlatform? EdPlatformInstance = null;
 
@@ -25,7 +26,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
         public EdPlatformManager(IConfiguration configuration)
         {
             _configuration = configuration;
-            connectionString = _configuration.GetConnectionString("SqlServer");
+            connectionString = _configuration.GetConnectionString("PostgreSql");
         }
 
         public void UpdateStudents()
@@ -42,38 +43,38 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             }
         }
 
-        public bool CreateEdPlatform()
+        public async Task<bool> CreateEdPlatformAsync()
         {
             EdPlatformInstance = EdPlatform.Initialize();
             _tutorManager.TutorsUpdated += UpdateTutors;
             _studentManager.StudentsUpdated += UpdateStudents;
 
-            SqlConnection? connection = _dapperContext.OpenConnection(connectionString);
+            NpgsqlConnection? connection = _dapperContext.OpenConnection(connectionString);
 
             var parameters = new { };
-            connection.Execute("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            await connection.ExecuteAsync("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
             connection.Close();
 
             return true;
         }
-        public bool CreateEdPlatform(string language, Themes theme)
+        public async Task<bool> CreateEdPlatformAsync(string language, Themes theme)
         {
             if (language.Length > 2) return false;
             EdPlatformInstance = EdPlatform.Initialize(language, theme);
             _tutorManager.TutorsUpdated += UpdateTutors;
             _studentManager.StudentsUpdated += UpdateStudents;
 
-            SqlConnection? connection = _dapperContext.OpenConnection(connectionString);
+            NpgsqlConnection? connection = _dapperContext.OpenConnection(connectionString);
  
             var parameters = new { @Language = language, @Theme = theme};
-            connection.Execute("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+            await connection.ExecuteAsync("CreateEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
             connection.Close();
 
             return true;
         }
-        public bool DeleteEdPlatform()
+        public async Task<bool> DeleteEdPlatformAsync()
         {
-            SqlConnection? connection = _dapperContext.OpenConnection(connectionString);
+            NpgsqlConnection? connection = _dapperContext.OpenConnection(connectionString);
             var parameters = new { };
             if (EdPlatformInstance == null)
             {
@@ -83,7 +84,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             {
                 _tutorManager.TutorsUpdated -= UpdateTutors;
                 _studentManager.StudentsUpdated -= UpdateStudents;
-                connection.Execute("DeleteEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
+                await connection.ExecuteAsync("eEdPlatformProcedure", parameters, commandType: System.Data.CommandType.StoredProcedure);
                 connection.Close();
                 return EdPlatformInstance.Drop();
             }
@@ -97,7 +98,7 @@ namespace ThirdTeam_Study.BusinessLayer.Managers
             }
             else
             {
-                CreateEdPlatform();
+                CreateEdPlatformAsync();
                 return EdPlatformInstance;
             }
         }
